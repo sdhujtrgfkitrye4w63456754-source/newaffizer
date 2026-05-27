@@ -3,266 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Dashboard | Private Member Access</title>
+    <title>Lia's Private Room | 100% Free</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { background-color: #080a12; color: #f1f5f9; font-family: 'Inter', sans-serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; }
-        .premium-border { border: 1px solid rgba(236, 72, 153, 0.3); }
-        .neon-text { text-shadow: 0 0 10px rgba(236, 72, 153, 0.5); }
+        body { background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
         
-        /* Video Aspect Ratio */
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
+        /* Ringing Animation */
+        @keyframes ring { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
+        .ringing-btn { animation: ring 1.5s infinite; }
         
-        .contact-icon { transition: all 0.3s ease; cursor: pointer; }
-        .contact-icon:hover { transform: translateY(-5px); filter: brightness(1.2); }
-        
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-        .btn-pulse { animation: pulse 2s infinite; }
+        @keyframes pulse-bg { 0% { background-color: rgba(30, 41, 59, 0.95); } 50% { background-color: rgba(15, 23, 42, 0.98); } 100% { background-color: rgba(30, 41, 59, 0.95); } }
+        .call-screen { animation: pulse-bg 2s infinite; }
+
+        .image-hover:hover { transform: scale(1.05); transition: 0.4s ease-in-out; }
     </style>
 </head>
-<body class="p-2 sm:p-4">
+<body class="p-2 sm:p-4 pb-20">
 
-    <!-- TOP VIP DASHBOARD -->
-    <header class="max-w-6xl mx-auto mb-6">
-        <div class="glass-card p-4 sm:p-6 flex flex-col md:flex-row justify-between items-center gap-4 premium-border">
-            <div class="flex items-center gap-4">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100" class="w-16 h-16 rounded-full border-2 border-pink-500 p-1">
-                    <span class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-[#080a12] rounded-full"></span>
-                </div>
-                <div>
-                    <h1 class="text-xl font-black tracking-tighter uppercase italic neon-text">LiaGotti <span class="text-pink-500">LIVE</span></h1>
-                    <div class="flex items-center gap-2 text-[10px] uppercase font-bold text-gray-400 tracking-widest">
-                        <span class="bg-pink-600/20 text-pink-500 px-2 py-0.5 rounded">VIP MEMBER AREA</span>
-                        <span class="text-green-500">● 100% FREE ACCESS</span>
-                    </div>
-                </div>
+    <!-- Navbar & Login Section -->
+    <nav class="max-w-5xl mx-auto glass rounded-2xl p-4 mb-6 shadow-xl flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100" class="w-12 h-12 rounded-full border-2 border-green-400">
+                <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-[#0f172a]"></span>
             </div>
-            
-            <!-- Account Stats -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-                <div class="bg-white/5 p-2 rounded-lg min-w-[80px]">
-                    <p class="text-[9px] text-gray-400 uppercase">Credits</p>
-                    <p class="font-bold text-green-400">UNLIMITED</p>
-                </div>
-                <div class="bg-white/5 p-2 rounded-lg min-w-[80px]">
-                    <p class="text-[9px] text-gray-400 uppercase">Status</p>
-                    <p class="font-bold text-pink-500 tracking-tighter">PREMIUM</p>
-                </div>
-                <div class="bg-white/5 p-2 rounded-lg min-w-[80px]">
-                    <p class="text-[9px] text-gray-400 uppercase">Verification</p>
-                    <p class="font-bold text-blue-400">PASSED</p>
-                </div>
-                <div class="bg-white/5 p-2 rounded-lg min-w-[80px]">
-                    <p class="text-[9px] text-gray-400 uppercase">Join Date</p>
-                    <p class="font-bold text-gray-200">TODAY</p>
-                </div>
+            <div>
+                <h1 class="text-xl font-bold">Lia <span class="text-green-400 text-sm">● Online</span></h1>
+                <p class="text-xs text-gray-400">Looking for fun, NO hidden costs.</p>
             </div>
         </div>
-    </header>
-
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
         
-        <!-- LEFT SIDEBAR: 10 CONTACT METHODS -->
-        <aside class="lg:col-span-1 space-y-4">
-            <div class="glass-card p-5">
-                <h3 class="text-sm font-bold uppercase tracking-widest mb-6 text-pink-400 flex items-center gap-2">
-                    <i class="fas fa-headset"></i> Direct Contact
-                </h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <!-- 1. WhatsApp Call -->
-                    <div onclick="redirectToCPA()" class="contact-icon flex flex-col items-center gap-2 bg-green-600/10 p-3 rounded-xl border border-green-600/20">
-                        <i class="fab fa-whatsapp text-2xl text-green-500"></i>
-                        <span class="text-[10px] font-bold">WhatsApp Call</span>
-                    </div>
-                    <!-- 2. Telegram -->
-                    <div onclick="redirectToCPA()" class="contact-icon flex flex-col items-center gap-2 bg-blue-600/10 p-3 rounded-xl border border-blue-600/20">
-                        <i class="fab fa-telegram text-2xl text-blue-400"></i>
-                        <span class="text-[10px] font-bold">Telegram</span>
-                    </div>
-                    <!-- 3. Messenger -->
-                    <div onclick="redirectToCPA()" class="contact-icon flex flex-col items-center gap-2 bg-purple-600/10 p-3 rounded-xl border border-purple-600/20">
-                        <i class="fab fa-facebook-messenger text-2xl text-purple-400"></i>
-                        <span class="text-[10px] font-bold">Messenger</span>
-                    </div>
-                    <!-- 4. Skype -->
-                    <div onclick="redirectToCPA()" class="contact-icon flex flex-col items-center gap-2 bg-blue-400/10 p-3 rounded-xl border border-blue-400/20">
-                        <i class="fab fa-skype text-2xl text-blue-300"></i>
-                        <span class="text-[10px] font-bold">Skype</span>
-                    </div>
-                    <!-- 5. Snapchat -->
-                    <div onclick="redirectToCPA()" class="contact-icon flex flex-col items-center gap-2 bg-yellow-400/10 p-3 rounded-xl border border-yellow-400/20">
-                        <i class="fab fa-snapchat text-2xl text-yellow-400"></i>
-                        <span class="text-[10px] font-bold">Snapchat</span>
-                    </div>
-                    <!-- 6. Instagram -->
-                    <div onclick="redirectToCPA()" class="contact-icon flex flex-col items-center gap-2 bg-pink-600/10 p-3 rounded-xl border border-pink-600/20">
-                        <i class="fab fa-instagram text-2xl text-pink-500"></i>
-                        <span class="text-[10px] font-bold">Instagram DM</span>
-                    </div>
-                    <!-- 7. Discord -->
-                    <div onclick="redirectToCPA()" class="contact-icon flex flex-col items-center gap-2 bg-indigo-600/10 p-3 rounded-xl border border-indigo-600/20">
-                        <i class="fab fa-discord text-2xl text-indigo-400"></i>
-                        <span class="text-[10px] font-bold">Discord</span>
-                    </div>
-                    <!-- 8. Viber -->
-                    <div onclick="redirectToCPA()" class="contact-icon flex flex-col items-center gap-2 bg-purple-700/10 p-3 rounded-xl border border-purple-700/20">
-                        <i class="fab fa-viber text-2xl text-purple-500"></i>
-                        <span class="text-[10px] font-bold">Viber</span>
-                    </div>
-                    <!-- 9. Line -->
-                    <div onclick="redirectToCPA()" class="contact-icon flex flex-col items-center gap-2 bg-green-500/10 p-3 rounded-xl border border-green-500/20">
-                        <i class="fab fa-line text-2xl text-green-400"></i>
-                        <span class="text-[10px] font-bold">Line App</span>
-                    </div>
-                    <!-- 10. Private Email -->
-                    <div onclick="redirectToCPA()" class="contact-icon flex flex-col items-center gap-2 bg-red-600/10 p-3 rounded-xl border border-red-600/20">
-                        <i class="fas fa-envelope text-2xl text-red-500"></i>
-                        <span class="text-[10px] font-bold">Private Email</span>
-                    </div>
-                </div>
-                
-                <button onclick="redirectToCPA()" class="w-full mt-6 bg-pink-600 py-3 rounded-lg font-black uppercase text-xs tracking-widest hover:bg-pink-500 transition btn-pulse">
-                    Unlock All Contacts
+        <!-- Login Form -->
+        <div class="flex items-center gap-2 bg-gray-900/50 p-2 rounded-xl border border-gray-700 w-full md:w-auto">
+            <input type="text" placeholder="Username" class="bg-gray-800 text-xs px-3 py-2 rounded-lg outline-none focus:border-green-400 border border-transparent w-24 sm:w-32">
+            <input type="password" placeholder="Password" class="bg-gray-800 text-xs px-3 py-2 rounded-lg outline-none focus:border-green-400 border border-transparent w-24 sm:w-32">
+            <button onclick="attemptLogin()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow-lg">Login</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto space-y-6">
+        
+        <!-- Warning / Instruction Banner -->
+        <div class="bg-blue-900/30 border border-blue-500/30 text-blue-200 p-4 rounded-xl text-center text-sm font-semibold flex items-center justify-center gap-2">
+            <i class="fas fa-info-circle text-blue-400"></i>
+            You must have a registered account to chat or call with me. Registration is 100% FREE!
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Sidebar Info -->
+            <div class="glass p-5 rounded-xl md:col-span-1 space-y-4 h-fit">
+                <h3 class="font-bold text-lg border-b border-gray-700 pb-2">My Details</h3>
+                <ul class="text-sm space-y-3 text-gray-300">
+                    <li><strong class="text-white">Status:</strong> <span class="text-green-400 font-bold">Ready to chat</span></li>
+                    <li><strong class="text-white">Location:</strong> Same city as you</li>
+                    <li><strong class="text-white">Cost:</strong> <span class="bg-green-500/20 text-green-400 px-2 py-0.5 rounded font-bold uppercase">Totally Free</span></li>
+                </ul>
+                <button onclick="redirectToCPA()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl mt-4 shadow-[0_0_15px_rgba(34,197,94,0.4)] transition">
+                    Create Free Account
                 </button>
             </div>
-            
-            <!-- Safe Badge -->
-            <div class="glass-card p-4 border border-green-500/20 text-center">
-                <i class="fas fa-shield-alt text-3xl text-green-500 mb-2"></i>
-                <h4 class="font-bold text-xs">NO COST • NO CARD</h4>
-                <p class="text-[10px] text-gray-500 uppercase mt-1 italic">Verified Secure Area</p>
+
+            <!-- Media Gallery -->
+            <div class="md:col-span-2 space-y-6">
+                <!-- Free Photos -->
+                <div class="glass p-5 rounded-xl">
+                    <h2 class="text-lg font-bold mb-4"><i class="fas fa-images text-blue-400"></i> My Free Gallery</h2>
+                    <div class="grid grid-cols-3 gap-2">
+                        <img src="https://github.com/mizan000321-ops/newv/blob/main/GoWoZl9X0AA1I6V.jpg?raw=true" class="w-full h-24 sm:h-32 object-cover rounded-lg cursor-pointer image-hover" onclick="redirectToCPA()">
+                        <img src="https://github.com/mizan000321-ops/newv/blob/main/Gv2LKn_XwAAsWou.jpg?raw=true" class="w-full h-24 sm:h-32 object-cover rounded-lg cursor-pointer image-hover" onclick="redirectToCPA()">
+                        <img src="https://github.com/mizan000321-ops/newv/blob/main/HAwdaxsW0AA1AU1.jpg?raw=true" class="w-full h-24 sm:h-32 object-cover rounded-lg cursor-pointer image-hover" onclick="redirectToCPA()">
+                        <img src="https://github.com/mizan000321-ops/newv/blob/main/HBuOij0WoAAfrI3.jpg?raw=true" class="w-full h-24 sm:h-32 object-cover rounded-lg cursor-pointer image-hover" onclick="redirectToCPA()">
+                        <img src="https://github.com/mizan000321-ops/newv/blob/main/HE7LupIXEAA2xnS.jpg?raw=true" class="w-full h-24 sm:h-32 object-cover rounded-lg cursor-pointer image-hover" onclick="redirectToCPA()">
+                        <div onclick="redirectToCPA()" class="w-full h-24 sm:h-32 bg-gray-800 rounded-lg cursor-pointer flex flex-col items-center justify-center border border-dashed border-gray-600 hover:bg-gray-700 transition">
+                            <i class="fas fa-unlock text-gray-400 mb-1"></i>
+                            <span class="text-[10px] text-gray-400">Login to see 15 more</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Free Videos -->
+                <div class="glass p-5 rounded-xl">
+                    <h2 class="text-lg font-bold mb-4"><i class="fas fa-video text-blue-400"></i> My Videos</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="relative rounded-lg overflow-hidden cursor-pointer group" onclick="redirectToCPA()">
+                            <iframe src="https://drive.google.com/file/d/1VwRl5_0Fc_BhbPtloFWQTb6dl2AVAGt6/preview" class="w-full h-40 border-0 pointer-events-none"></iframe>
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition z-10"></div>
+                        </div>
+                        <div class="relative rounded-lg overflow-hidden cursor-pointer group" onclick="redirectToCPA()">
+                            <iframe src="https://drive.google.com/file/d/1XD3gmsMDt-ha_o90ocz9z-Pw2SwkN87a/preview" class="w-full h-40 border-0 pointer-events-none"></iframe>
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition z-10"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </aside>
+        </div>
+    </main>
 
-        <!-- MAIN CONTENT: PHOTOS & VIDEOS -->
-        <div class="lg:col-span-3 space-y-8">
+    <!-- FAKE INCOMING CALL OVERLAY (Hidden by default) -->
+    <div id="callOverlay" class="fixed inset-0 bg-slate-900/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden call-screen">
+        
+        <!-- Standard Call UI -->
+        <div id="callUI" class="flex flex-col items-center justify-center w-full max-w-sm px-6">
+            <h2 id="callStatusText" class="text-gray-300 text-lg mb-6 font-medium tracking-wide">Incoming Video Call...</h2>
             
-            <!-- SECTION 1: PRIVATE PHOTOS (GITHUB) -->
-            <section>
-                <h2 class="text-lg font-bold mb-4 flex items-center gap-2"><i class="fas fa-camera text-pink-500"></i> Private Photo Album <span class="text-xs font-normal text-gray-500 italic">(10 items)</span></h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-                    <!-- Image 1-10 (GitHub) -->
-                    <div onclick="redirectToCPA()" class="relative rounded-lg overflow-hidden group cursor-pointer h-48">
-                        <img src="https://github.com/mizan000321-ops/newv/blob/main/GoWoZl9X0AA1I6V.jpg?raw=true" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                            <i class="fas fa-search-plus text-white text-xl"></i>
-                        </div>
-                    </div>
-                    <div onclick="redirectToCPA()" class="relative rounded-lg overflow-hidden group cursor-pointer h-48">
-                        <img src="https://github.com/mizan000321-ops/newv/blob/main/Gv2LKn_XwAAsWou.jpg?raw=true" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"></div>
-                    </div>
-                    <div onclick="redirectToCPA()" class="relative rounded-lg overflow-hidden group cursor-pointer h-48">
-                        <img src="https://github.com/mizan000321-ops/newv/blob/main/HAwdaxsW0AA1AU1.jpg?raw=true" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div onclick="redirectToCPA()" class="relative rounded-lg overflow-hidden group cursor-pointer h-48">
-                        <img src="https://github.com/mizan000321-ops/newv/blob/main/HBuOij0WoAAfrI3.jpg?raw=true" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div onclick="redirectToCPA()" class="relative rounded-lg overflow-hidden group cursor-pointer h-48">
-                        <img src="https://github.com/mizan000321-ops/newv/blob/main/HE7LupIXEAA2xnS.jpg?raw=true" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div onclick="redirectToCPA()" class="relative rounded-lg overflow-hidden group cursor-pointer h-48">
-                        <img src="https://github.com/mizan000321-ops/newv/blob/main/HG2xUfkX0AAZEu5.jpg?raw=true" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div onclick="redirectToCPA()" class="relative rounded-lg overflow-hidden group cursor-pointer h-48">
-                        <img src="https://github.com/mizan000321-ops/newv/blob/main/HGTqY9UX0AAUZlR.jpg?raw=true" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div onclick="redirectToCPA()" class="relative rounded-lg overflow-hidden group cursor-pointer h-48">
-                        <img src="https://github.com/mizan000321-ops/newv/blob/main/HGwpfY6XwAAYJZl.jpg?raw=true" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div onclick="redirectToCPA()" class="relative rounded-lg overflow-hidden group cursor-pointer h-48">
-                        <img src="https://github.com/mizan000321-ops/newv/blob/main/HHN_VvQXsAAyPas.jpg?raw=true" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div onclick="redirectToCPA()" class="relative rounded-lg overflow-hidden group cursor-pointer h-48">
-                        <img src="https://github.com/mizan000321-ops/newv/blob/main/HIdka0EWIAAYMTj.jpg?raw=true" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
+            <div class="relative mb-10">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200" class="w-32 h-32 rounded-full border-4 border-gray-700 shadow-2xl object-cover">
+                <div id="callIconBadge" class="absolute -bottom-2 -right-2 bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center border-4 border-slate-900 text-white shadow-lg">
+                    <i class="fas fa-video"></i>
                 </div>
-            </section>
+            </div>
+            
+            <h1 class="text-3xl font-bold text-white mb-2">Lia</h1>
+            <p class="text-green-400 text-sm mb-12">100% Free Connection</p>
+            
+            <div class="flex justify-between w-full px-8">
+                <!-- Decline Button -->
+                <button onclick="declineCall()" class="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center text-white text-2xl hover:bg-red-400 transition shadow-[0_0_20px_rgba(239,68,68,0.5)]">
+                    <i class="fas fa-phone-slash"></i>
+                </button>
+                <!-- Accept Button -->
+                <button onclick="acceptCall()" class="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white text-2xl ringing-btn transition">
+                    <i class="fas fa-phone"></i>
+                </button>
+            </div>
+        </div>
 
-            <!-- SECTION 2: PREMIUM VIDEO CLIPS (GOOGLE DRIVE) -->
-            <section class="pb-20">
-                <h2 class="text-lg font-bold mb-4 flex items-center gap-2"><i class="fas fa-video text-pink-500"></i> Premium Video Clips <span class="text-xs font-normal text-gray-500 italic">(18 Exclusive Clips)</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                    
-                    <!-- Video items mapping from Drive links -->
-                    <div onclick="redirectToCPA()" class="glass-card p-2 cursor-pointer group">
-                        <div class="video-container mb-2">
-                            <iframe src="https://drive.google.com/file/d/1VwRl5_0Fc_BhbPtloFWQTb6dl2AVAGt6/preview"></iframe>
-                            <div class="absolute inset-0 bg-black/10 z-10"></div>
-                        </div>
-                        <div class="flex justify-between items-center px-1">
-                            <span class="text-xs font-bold text-gray-300">Private Clip #01</span>
-                            <span class="text-[10px] bg-white/10 px-2 py-0.5 rounded text-gray-400"><i class="fas fa-clock mr-1"></i> 2:14</span>
-                        </div>
-                    </div>
-
-                    <div onclick="redirectToCPA()" class="glass-card p-2 cursor-pointer group">
-                        <div class="video-container mb-2">
-                            <iframe src="https://drive.google.com/file/d/1XD3gmsMDt-ha_o90ocz9z-Pw2SwkN87a/preview"></iframe>
-                            <div class="absolute inset-0 bg-black/10 z-10"></div>
-                        </div>
-                        <div class="flex justify-between items-center px-1">
-                            <span class="text-xs font-bold text-gray-300">Private Clip #02</span>
-                        </div>
-                    </div>
-
-                    <div onclick="redirectToCPA()" class="glass-card p-2 cursor-pointer group">
-                        <div class="video-container mb-2">
-                            <iframe src="https://drive.google.com/file/d/1BfSYJN_rrLkxNrz4aK3I2UWpioYO5BKY/preview"></iframe>
-                        </div>
-                        <div class="flex justify-between items-center px-1">
-                            <span class="text-xs font-bold text-gray-300">Shower Stream</span>
-                        </div>
-                    </div>
-                    
-                    <!-- More videos can be added here following the same pattern -->
-                    <!-- I've added a special "Locked" video look for the rest -->
-                    
-                    <div onclick="redirectToCPA()" class="glass-card p-2 cursor-pointer group relative">
-                        <div class="video-container bg-black/80 flex items-center justify-center">
-                            <i class="fas fa-lock text-4xl text-pink-500 opacity-50"></i>
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition bg-black/60 z-20">
-                            <p class="text-xs font-black uppercase text-white bg-pink-600 px-4 py-2 rounded">Sign Up to Unlock 15+ Videos</p>
-                        </div>
-                        <div class="mt-2 flex justify-between items-center px-1">
-                            <span class="text-xs font-bold text-gray-400 italic">15 more clips hidden...</span>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
+        <!-- Registration Prompt UI (Appears after clicking Accept) -->
+        <div id="registerPrompt" class="hidden bg-slate-800 p-8 rounded-2xl border border-blue-500/30 max-w-md w-[90%] text-center shadow-2xl">
+            <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-400 text-2xl">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-white mb-2">Connection Blocked!</h2>
+            <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+                To accept my call or chat with me, you must create a free account first to prove you are a real human. <br><br>
+                <strong class="text-white">Step 1:</strong> Click the button below to register for free.<br>
+                <strong class="text-white">Step 2:</strong> Come back to this page.<br>
+                <strong class="text-white">Step 3:</strong> Enter your Username & Password at the top to login and connect with me immediately!
+            </p>
+            <button onclick="redirectToCPA()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl text-lg shadow-[0_0_15px_rgba(37,99,235,0.5)] transition mb-3">
+                Create Free Account Now
+            </button>
+            <button onclick="closeOverlay()" class="text-gray-400 text-xs hover:text-white underline">I will do it later</button>
         </div>
     </div>
 
-    <!-- STICKY ACTION BUTTON -->
-    <div class="fixed bottom-4 left-1/2 -translate-x-1/2 w-full max-w-sm px-4 z-50">
-        <button onclick="redirectToCPA()" class="w-full bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 bg-[length:200%_100%] animate-[gradient_3s_linear_infinite] py-4 rounded-full text-white font-black text-sm uppercase tracking-[3px] shadow-[0_0_20px_rgba(236,72,153,0.6)]">
-            Verify To Get Full Access (Free)
-        </button>
-    </div>
+    <!-- Audio Element for Ringtone -->
+    <!-- Using a reliable free ringtone from mixkit -->
+    <audio id="ringtoneAudio" loop preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        const CPA_URL = "https://t.taffizerq.com/click?pid=3844&offer_id=2310"; // বসিয়ে দিন আপনার লিংক
+        const CPA_LINK = "https://t.taffizerq.com/click?pid=3844&offer_id=2310"; 
+        
+        let callStep = 1; // 1 = Video, 2 = Audio, 3 = Friend Request
+        const overlay = document.getElementById('callOverlay');
+        const ui = document.getElementById('callUI');
+        const prompt = document.getElementById('registerPrompt');
+        const ringtone = document.getElementById('ringtoneAudio');
+        const statusText = document.getElementById('callStatusText');
+        const iconBadge = document.getElementById('callIconBadge');
 
-        function redirectToCPA() {
-            window.location.href = CPA_URL;
+        // 1. Initial trigger after 15 seconds
+        setTimeout(() => {
+            triggerCall();
+        }, 15000);
+
+        // Attempt login (fake behavior)
+        function attemptLogin() {
+            alert("Account not found! Please create a free account first.");
+            redirectToCPA();
         }
 
-        // Simple gradient animation for button
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes gradient {
-                0% { background-position: 0% 50%; }
-                50% { background-position: 100% 50%; }
-                100% { background-position: 0% 50%; }
+        function triggerCall() {
+            overlay.classList.remove('hidden');
+            ui.classList.remove('hidden');
+            prompt.classList.add('hidden');
+            
+            // Try to play ringtone (browsers might block autoplay, but visual will still work)
+            let playPromise = ringtone.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Auto-play prevented by browser. Visuals only.");
+                });
             }
-        `;
-        document.head.appendChild(style);
+
+            if(callStep === 1) {
+                statusText.innerText = "Incoming Video Call...";
+                iconBadge.innerHTML = '<i class="fas fa-video"></i>';
+                iconBadge.className = "absolute -bottom-2 -right-2 bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center border-4 border-slate-900 text-white shadow-lg";
+            } else if (callStep === 2) {
+                statusText.innerText = "Incoming Voice Call...";
+                iconBadge.innerHTML = '<i class="fas fa-phone-alt"></i>';
+                iconBadge.className = "absolute -bottom-2 -right-2 bg-green-500 w-10 h-10 rounded-full flex items-center justify-center border-4 border-slate-900 text-white shadow-lg";
+            } else if (callStep === 3) {
+                statusText.innerText = "New Friend Request!";
+                iconBadge.innerHTML = '<i class="fas fa-user-plus"></i>';
+                iconBadge.className = "absolute -bottom-2 -right-2 bg-purple-500 w-10 h-10 rounded-full flex items-center justify-center border-4 border-slate-900 text-white shadow-lg";
+                // Change Accept button to say "Accept Request" conceptually
+            }
+        }
+
+        function declineCall() {
+            ringtone.pause();
+            ringtone.currentTime = 0;
+            overlay.classList.add('hidden');
+            
+            if(callStep === 1) {
+                callStep = 2;
+                setTimeout(triggerCall, 2000); // Wait 2 secs, then audio call
+            } else if (callStep === 2) {
+                callStep = 3;
+                setTimeout(triggerCall, 2000); // Wait 2 secs, then friend request
+            } else {
+                // If they reject everything, just close it.
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function acceptCall() {
+            ringtone.pause();
+            ringtone.currentTime = 0;
+            // Hide call UI, show strictly formatted account creation prompt
+            ui.classList.add('hidden');
+            prompt.classList.remove('hidden');
+        }
+
+        function closeOverlay() {
+            overlay.classList.add('hidden');
+        }
+
+        function redirectToCPA() {
+            window.location.href = CPA_LINK;
+        }
+
+        // Trick: if user clicks anywhere on the document before the 15 seconds, 
+        // it unlocks the audio context so the ringtone WILL play loudly.
+        document.body.addEventListener('click', function() {
+            // silent play and pause to unlock audio
+            ringtone.play().then(() => { ringtone.pause(); }).catch(e => {});
+        }, { once: true });
     </script>
 </body>
 </html>
