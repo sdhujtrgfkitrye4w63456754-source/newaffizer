@@ -41,9 +41,15 @@
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #FF2E93; border-radius: 10px; }
+
+        /* Hide Google Translate Top Bar */
+        .skiptranslate { display: none !important; }
+        body { top: 0px !important; }
     </style>
 </head>
 <body class="min-h-screen pb-24 relative" onclick="initAudioContext()">
+
+    <div id="google_translate_element" style="display:none;"></div>
 
     <audio id="ringtone" src="https://assets.mixkit.co/active_storage/sfx/2870/2870-preview.mp3" loop preload="auto"></audio>
 
@@ -150,7 +156,7 @@
         <div onclick="toggleChatWindow()" class="w-14 h-14 bg-gradient-to-tr from-[#FF2E93] to-[#FF5E62] rounded-full flex items-center justify-center cursor-pointer shadow-[0_0_20px_rgba(255,46,147,0.5)] relative border-2 border-white hover:scale-105 transition duration-200">
             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-full h-full rounded-full object-cover">
             <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white"></span>
-            <div id="chatBadgeNotification" class="absolute -top-2 -left-2 bg-red-600 border border-white text-white font-black text-[10px] w-5 h-5 flex items-center justify-center rounded-full animate-bounce hidden">1</div>
+            <div id="chatBadgeNotification" class="absolute -top-2 -left-2 bg-red-600 border border-white text-white font-black text-[10px] w-5 h-5 flex items-center justify-center rounded-full animate-bounce hidden">0</div>
         </div>
     </div>
 
@@ -235,7 +241,30 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <script>
+        // --- MASTER LEVEL: AUTO TRANSLATE BASED ON BROWSER LOCATION/LANGUAGE ---
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get user's browser language (e.g., 'da' for Danish, 'de' for German)
+            var userLang = navigator.language || navigator.userLanguage; 
+            var langCode = userLang.substring(0, 2).toLowerCase();
+            
+            // If the user's language is NOT English, and they haven't been translated yet
+            if (langCode !== 'en' && !document.cookie.includes('googtrans')) {
+                // Force Google Translate cookie to their native language
+                document.cookie = "googtrans=/en/" + langCode + "; path=/";
+                document.cookie = "googtrans=/en/" + langCode + "; domain=" + window.location.hostname + "; path=/";
+                // Reload page to apply translation instantly
+                location.reload(); 
+            }
+        });
+
         const ringtone = document.getElementById('ringtone');
         let audioUnlocked = false;
         let callTriggered = false;
@@ -258,18 +287,15 @@
                     </div>
                 </div>
             `;
-            // Show badge
-            const badge = document.getElementById('chatBadgeNotification');
-            badge.innerText = "1";
-            badge.classList.remove('hidden');
-            ringtone.play().then(() => { setTimeout(() => {ringtone.pause(); ringtone.currentTime = 0;}, 1000); }); // short notification ping
+            updateChatBadge(1);
+            ringtone.play().then(() => { setTimeout(() => {ringtone.pause(); ringtone.currentTime = 0;}, 1000); });
         }, 3000);
 
         // Message 2 (Options) - Sent after 8 seconds
         setTimeout(() => {
             const chatBody = document.getElementById('chatMessages');
             chatBody.innerHTML += `
-                <div class="flex gap-2">
+                <div class="flex gap-2 mt-2">
                     <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-6 h-6 rounded-full object-cover border border-[#FF2E93]">
                     <div class="bg-[#FF2E93]/20 p-2.5 rounded-xl rounded-tl-none text-white border border-[#FF2E93]/30 shadow-sm">
                         Inside my private room, you can choose exactly how we connect:<br><br>
@@ -280,13 +306,71 @@
                     </div>
                 </div>
             `;
-            const badge = document.getElementById('chatBadgeNotification');
-            badge.innerText = "2";
-            badge.classList.remove('hidden');
-            chatBody.scrollTop = chatBody.scrollHeight; // Auto scroll down
+            updateChatBadge(2);
+            chatBody.scrollTop = chatBody.scrollHeight;
             ringtone.play().then(() => { setTimeout(() => {ringtone.pause(); ringtone.currentTime = 0;}, 1000); });
         }, 8000);
-        // ---------------------------------------------
+
+        // --- MASTER LEVEL: AUTO GENERATING ENGLISH CHAT (EVERY 10 SECONDS) ---
+        const engNames = ["Mike_Pro", "AlphaWolf", "John_D", "Guest_774", "ChrisTop", "David_M", "User_881", "Daniel99", "Steve_X", "Leo23"];
+        const engMessages = [
+            "Just verified! The private room is awesome 🔥",
+            "How do I join the video call?",
+            "Link works perfectly, thanks!",
+            "Waiting for you in room #409!",
+            "She is gorgeous 😍",
+            "Is the stream HD for everyone else?",
+            "Took 2 mins to verify, totally worth it.",
+            "Hey Lisa, I'm ready!"
+        ];
+
+        function addLiveEnglishComment() {
+            const randomName = engNames[Math.floor(Math.random() * engNames.length)];
+            const randomMessage = engMessages[Math.floor(Math.random() * engMessages.length)];
+            const chatBody = document.getElementById('chatMessages');
+
+            const commentHTML = `
+                <div class="flex gap-2 mt-2">
+                    <div class="w-6 h-6 rounded-full bg-gray-700 flex items-center justify-center text-[10px] text-white font-bold flex-shrink-0 border border-gray-500">${randomName.charAt(0)}</div>
+                    <div class="bg-black/50 p-2.5 rounded-xl rounded-tl-none text-gray-200 border border-white/5 shadow-sm">
+                        <span class="text-blue-400 font-bold text-[10px] block mb-1">${randomName}</span>
+                        ${randomMessage}
+                    </div>
+                </div>
+            `;
+            
+            chatBody.insertAdjacentHTML('beforeend', commentHTML);
+
+            // Keep max 10 comments so browser doesn't lag
+            if (chatBody.children.length > 10) {
+                chatBody.removeChild(chatBody.firstElementChild);
+            }
+            
+            // Auto scroll to bottom
+            chatBody.scrollTop = chatBody.scrollHeight;
+            
+            // Update badge if chat is closed
+            const container = document.getElementById('chatBoxContainer');
+            if (container.classList.contains('hidden')) {
+                const badge = document.getElementById('chatBadgeNotification');
+                let currentCount = parseInt(badge.innerText) || 0;
+                updateChatBadge(currentCount + 1);
+            }
+        }
+        
+        // Start auto comments after 12 seconds, then repeat every 10 seconds
+        setTimeout(() => {
+            setInterval(addLiveEnglishComment, 10000);
+        }, 12000);
+        // --------------------------------------------------------------------
+
+        function updateChatBadge(count) {
+            const badge = document.getElementById('chatBadgeNotification');
+            badge.innerText = count;
+            if(count > 0) {
+                badge.classList.remove('hidden');
+            }
+        }
 
         // Trigger Call Panel
         setTimeout(() => {
@@ -298,7 +382,7 @@
                 
                 setTimeout(() => {
                     if(!callScreen.classList.contains('hidden')) { dismissCall(); }
-                }, 10000); // Rings for 10 seconds
+                }, 10000);
             }
         }, 22000);
 
@@ -342,8 +426,8 @@
                 container.classList.remove('hidden');
                 container.classList.add('flex');
                 badge.classList.add('hidden');
+                badge.innerText = "0"; // Reset counter
                 
-                // Auto scroll to latest message when opened
                 const chatBody = document.getElementById('chatMessages');
                 chatBody.scrollTop = chatBody.scrollHeight;
             } else {
