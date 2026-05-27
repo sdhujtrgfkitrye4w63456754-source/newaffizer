@@ -3,754 +3,439 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔒 VIP Member Portal - Private Live Access</title>
+    <title>Professional Profile Layout</title>
     <style>
-        /* Premium Dark & Hot-Pink Theme */
+        /* Base Variables */
         :root {
-            --primary: #ff0055;
-            --primary-hover: #e6004c;
-            --secondary: #1e293b;
-            --dark: #090d16;
-            --glass: rgba(255, 255, 255, 0.06);
-            --border: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --bg-color: #f0f2f5;
+            --surface-color: #ffffff;
+            --primary-text: #050505;
+            --secondary-text: #65676b;
+            --primary-btn: #1877f2;
+            --primary-btn-hover: #166fe5;
+            --secondary-btn: #e4e6eb;
+            --secondary-btn-hover: #d8dadf;
+            --border-color: #ced0d4;
+            --border-radius: 8px;
         }
 
         body {
-            background-color: var(--dark);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #ffffff;
-            padding-bottom: 60px;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            color: var(--primary-text);
         }
 
-        /* Top Header */
-        .header {
-            text-align: center;
-            padding: 40px 20px 25px;
-            background: linear-gradient(to bottom, rgba(255, 0, 85, 0.2), transparent);
-            border-bottom: 1px solid rgba(255, 0, 85, 0.1);
-        }
-
-        .profile-container {
-            position: relative;
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 15px;
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 3px solid var(--primary);
-            object-fit: cover;
-            box-shadow: 0 0 25px rgba(255, 0, 85, 0.6);
-        }
-
-        .online-badge {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            background: #22c55e;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-            border: 2px solid var(--dark);
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
-        .sub-text { color: #94a3b8; font-size: 14px; max-width: 450px; margin: 0 auto; line-height: 1.5; }
-
-        /* Real-time Interactive Inbox Box Section */
-        .inbox-wrapper {
-            max-width: 500px;
-            margin: 25px auto;
-            padding: 0 20px;
-        }
-
-        .inbox-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .inbox-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: #f1f5f9;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .inbox-p {
-            font-size: 13px;
-            color: #94a3b8;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 8px;
-            background: rgba(0,0,0,0.3);
-            padding: 6px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .input-group input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 10px 15px;
-            color: white;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .input-group input::placeholder { color: #64748b; }
-
-        .submit-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 13px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .submit-btn:hover { background: var(--primary-hover); }
-
-        .status-msg {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 13.5px;
-            line-height: 1.5;
-            display: none;
-            text-align: center;
-        }
-
-        /* Block-Level Link Buttons */
-        .cta-container {
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .main-link-btn {
-            display: block !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-            background: linear-gradient(135deg, #ff0055 0%, #ff4d6d 100%) !important;
-            color: #ffffff !important;
-            text-decoration: none !important;
-            text-align: center !important;
-            padding: 18px 20px !important;
-            border-radius: 50px !important;
-            font-size: 16px !important;
-            font-weight: 800 !important;
-            letter-spacing: 0.5px !important;
-            box-shadow: 0 8px 25px rgba(255, 0, 85, 0.4) !important;
-            transition: transform 0.2s, opacity 0.2s !important;
-            margin: 15px 0 !important;
-        }
-
-        .main-link-btn:hover {
-            transform: translateY(-1px);
-            opacity: 0.95;
-        }
-
-        /* Gallery Grid Layout */
-        .gallery-heading {
-            max-width: 1000px;
-            margin: 40px auto 15px;
-            padding: 0 20px;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #64748b;
-        }
-
-        .gallery-container {
-            max-width: 1000px;
+        .container {
+            max-width: 1095px;
             margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
         }
 
-        .video-card {
-            background: var(--glass);
-            border-radius: 16px;
+        /* Top Profile Header */
+        .profile-header {
+            background-color: var(--surface-color);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .cover-photo-container {
+            max-width: 1095px;
+            height: 350px;
+            margin: 0 auto;
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+            background: linear-gradient(to bottom, #4a4a4a, #1a1a1a);
+            position: relative;
             overflow: hidden;
-            border: 1px solid var(--border);
-            transition: transform 0.3s, border-color 0.3s;
-            color: white;
-            position: relative;
-            display: block;
-            cursor: pointer;
-        }
-
-        .video-card:hover {
-            transform: scale(1.04);
-            border-color: var(--primary);
-        }
-
-        .thumbnail {
-            width: 100%;
-            aspect-ratio: 9/16;
-            background: #111827;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
-        .thumb-img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .cover-photo-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.7; 
         }
 
-        .play-btn {
-            position: absolute;
-            background: var(--primary);
-            width: 46px;
-            height: 46px;
+        .profile-info-container {
+            max-width: 1035px;
+            margin: 0 auto;
+            padding: 0 15px;
+            position: relative;
+        }
+
+        .profile-main {
+            display: flex;
+            align-items: flex-end;
+            margin-top: -30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .profile-pic-wrapper {
+            width: 168px;
+            height: 168px;
             border-radius: 50%;
+            border: 4px solid var(--surface-color);
+            background-color: var(--surface-color);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .profile-pic-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-details {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .profile-name {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Blue Verified Tick */
+        .verified-badge {
+            color: var(--primary-btn);
+            font-size: 20px;
+        }
+
+        .profile-meta {
+            color: var(--secondary-text);
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 0 12px;
+            height: 36px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-btn);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-btn-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-btn);
+            color: var(--primary-text);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-btn-hover);
+        }
+
+        /* Tabs */
+        .profile-nav {
+            display: flex;
+            padding: 4px 0;
+        }
+
+        .nav-item {
+            padding: 15px;
+            color: var(--secondary-text);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            background-color: var(--secondary-btn);
+        }
+
+        .nav-item.active {
+            color: var(--primary-btn);
+            position: relative;
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--primary-btn);
+        }
+
+        /* Bottom Layout Content */
+        .content-container {
+            max-width: 1035px;
+            margin: 15px auto;
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 15px;
+            padding: 0 15px;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+        }
+
+        .intro-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: var(--primary-text);
+            font-size: 15px;
+        }
+
+        .intro-icon {
+            color: #8c939d;
+            font-size: 20px;
+        }
+
+        /* Create Post Area */
+        .create-post {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .create-post-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--secondary-btn);
+        }
+
+        .create-post-input {
+            flex-grow: 1;
+            background-color: var(--bg-color);
+            border-radius: 20px;
+            padding: 10px 15px;
+            color: var(--secondary-text);
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .post-actions {
+            display: flex;
+            border-top: 1px solid var(--border-color);
+            margin-top: 15px;
+            padding-top: 10px;
+        }
+
+        .post-action-btn {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.5);
-            z-index: 2;
-        }
-
-        .play-triangle {
-            width: 0;
-            height: 0;
-            border-top: 9px solid transparent;
-            border-left: 15px solid white;
-            border-bottom: 9px solid transparent;
-            margin-left: 5px;
-        }
-
-        .video-info {
-            padding: 10px;
-            font-size: 12px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.75);
+            gap: 8px;
+            padding: 8px;
+            color: var(--secondary-text);
             font-weight: 600;
-            position: relative;
-            z-index: 2;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--border-radius);
+            cursor: pointer;
         }
 
-        @media (max-width: 480px) {
-            .gallery-container { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            h1 { font-size: 22px; }
+        .post-action-btn:hover {
+            background-color: var(--bg-color);
+        }
+
+        /* Post Feed */
+        .post {
+            padding: 0;
+        }
+        
+        .post-header {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .post-author-name {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--primary-text);
+            text-decoration: none;
+        }
+
+        .post-time {
+            font-size: 13px;
+            color: var(--secondary-text);
+        }
+
+        .post-content {
+            padding: 0 15px 15px 15px;
+            font-size: 15px;
+        }
+        
+        .post-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .content-container {
+                grid-template-columns: 1fr;
+            }
+            .profile-main {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .profile-details {
+                margin-left: 0;
+            }
+            .profile-actions {
+                justify-content: center;
+            }
+            .profile-nav {
+                justify-content: center;
+                overflow-x: auto;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="profile-container">
-            <img src="https://github.com/mizan000321-ops/newv/blob/main/G3UZgO_XMAAzE6N.jpg?raw=true" alt="Live Host" class="profile-img">
-            <span class="online-badge">LIVE NOW</span>
+    <div class="profile-header">
+        <div class="cover-photo-container">
+            <img src="https://via.placeholder.com/1095x350/8a8a8a/ffffff?text=Cover+Photo" alt="Cover Photo">
         </div>
-        <h1>Connect with Me Live 🎥</h1>
-        <p class="sub-text">Hey darling! I am waiting inside my private room. Click below to quickly pass the secure network check and unlock my official 1-on-1 live video stream instantly! 💋</p>
-    </div>
-
-    <div class="inbox-wrapper">
-        <div class="inbox-card">
-            <div class="inbox-title">💬 Step 1: Secure Your VIP Entry Name</div>
-            <p class="inbox-p">To prevent bots, our network requires a quick free verification. Click below to sign up, make sure to enter the <strong>Protection Code (Captcha)</strong> correctly, then drop your signup username here so I can instantly add you to my priority friends list! 🔥</p>
+        
+        <div class="profile-info-container">
+            <div class="profile-main">
+                <div class="profile-pic-wrapper">
+                    <img src="https://via.placeholder.com/168/cccccc/000000?text=Profile+Pic" alt="Profile Picture">
+                </div>
+                
+                <div class="profile-details">
+                    <h1 class="profile-name">
+                        Emma Watson <span class="verified-badge">✔</span>
+                    </h1>
+                    <div class="profile-meta">Public Figure • 74M Followers</div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="btn btn-primary">➕ Follow</button>
+                    <button class="btn btn-secondary">💬 Message</button>
+                    <button class="btn btn-secondary">...</button>
+                </div>
+            </div>
             
-            <div class="input-group">
-                <input type="text" id="usernameInput" placeholder="Enter your signup name...">
-                <button class="submit-btn" onclick="processUsername()">Submit Name</button>
+            <div class="profile-nav">
+                <a href="#" class="nav-item active">Posts</a>
+                <a href="#" class="nav-item">About</a>
+                <a href="#" class="nav-item">Mentions</a>
+                <a href="#" class="nav-item">Reviews</a>
+                <a href="#" class="nav-item">Followers</a>
+                <a href="#" class="nav-item">Photos</a>
+                <a href="#" class="nav-item">More</a>
             </div>
-            <div id="statusBox" class="status-msg"></div>
         </div>
     </div>
 
-    <div class="cta-container">
-        <a href="https://bedjfha.datesoffers.com/s/62b4abc4a39b9?preland=Adult&sub1=dksex" class="main-link-btn">
-            👉 CLICK HERE TO CONNECT WITH ME LIVE
-        </a>
+    <div class="content-container">
+        <div class="left-col">
+            <div class="card">
+                <h2 class="card-title">Intro</h2>
+                <div class="intro-item">
+                    <span class="intro-icon">ℹ️</span>
+                    <span>Page • Actor</span>
+                </div>
+                <div class="intro-item">
+                    <span class="intro-icon">🔗</span>
+                    <a href="#" style="text-decoration: none; color: var(--primary-btn);">instagram.com/emmawatson</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title">Photos</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; border-radius: 8px; overflow: hidden;">
+                    <img src="https://via.placeholder.com/150" alt="Photo" style="width: 100%;">
+                    <img src="https://via.placeholder.com/150" alt="Photo" style="width: 100%;">
+                    <img src="https://via.placeholder.com/150" alt="Photo" style="width: 100%;">
+                </div>
+            </div>
+        </div>
+
+        <div class="right-col">
+            <div class="card">
+                <div class="create-post">
+                    <img src="https://via.placeholder.com/40" alt="Profile" class="create-post-pic">
+                    <div class="create-post-input">Write something on this Page...</div>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action-btn">
+                        <span style="color: #f3425f;">📷</span> Live Video
+                    </div>
+                    <div class="post-action-btn">
+                        <span style="color: #45bd62;">🖼️</span> Photo/video
+                    </div>
+                </div>
+            </div>
+
+            <div class="card post">
+                <div class="post-header">
+                    <img src="https://via.placeholder.com/40" alt="Profile" class="create-post-pic">
+                    <div>
+                        <a href="#" class="post-author-name">Emma Watson</a>
+                        <div class="post-time">Yesterday at 9:00 PM • 🌎</div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    Happy International Women's Day! ✨
+                </div>
+                <img src="https://via.placeholder.com/600x400/eeeeee/333333?text=Post+Image" alt="Post Image" class="post-image">
+                <div class="post-actions" style="margin-top: 0; border-top: none; padding: 10px 15px; border-bottom: 1px solid var(--border-color);">
+                    <div style="color: var(--secondary-text); font-size: 15px;">👍 ❤️ 125K</div>
+                </div>
+                <div class="post-actions" style="margin-top: 0;">
+                    <div class="post-action-btn">👍 Like</div>
+                    <div class="post-action-btn">💬 Comment</div>
+                    <div class="post-action-btn">↪️ Share</div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="gallery-heading">📸 My Private Album Preview (18 Clips):</div>
-    
-    <div class="gallery-container">
-        
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://github.com/mizan000321-ops/newv/blob/main/G3UZgO_XMAAzE6N.jpg?raw=true" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #1</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://github.com/mizan000321-ops/newv/blob/main/GoWoZl9X0AA1I6V.jpg?raw=true" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #2</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://github.com/mizan000321-ops/newv/blob/main/Gv2LKn_XwAAsWou.jpg?raw=true" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #3</div>
-        </div>
-        
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://github.com/mizan000321-ops/newv/blob/main/HAwdaxsW0AA1AU1.jpg?raw=true" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #4</div>
-        </div>
-        
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://github.com/mizan000321-ops/newv/blob/main/HBuOij0WoAAfrI3.jpg?raw=true" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #5</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://github.com/mizan000321-ops/newv/blob/main/HE7LupIXEAA2xnS.jpg?raw=true" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #6</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://github.com/mizan000321-ops/newv/blob/main/HG2xUfkX0AAZEu5.jpg?raw=true" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #7</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://github.com/mizan000321-ops/newv/blob/main/HGTqY9UX0AAUZlR.jpg?raw=true" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #8</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://github.com/mizan000321-ops/newv/blob/main/HGwpfY6XwAYJZl.jpg?raw=true" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #9</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://github.com/mizan000321-ops/newv/blob/main/HHN_VvQXsAAyPas.jpg?raw=true" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #10</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://github.com/mizan000321-ops/newv/blob/main/HIdka0EWIAAYMTj.jpg?raw=true" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #11</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://drive.google.com/thumbnail?id=1vRivbiFDOWdoBdV61QqXmC9C9C6ZffqSl9" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #12</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://drive.google.com/thumbnail?id=13SzbqnfE2kgRpaE2cdNV_EJG3I0UwP8G" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #13</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://drive.google.com/thumbnail?id=1gq-CSLvW_WPh3HUbGs3x-G0Wirj3G26M" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #14</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://drive.google.com/thumbnail?id=1lqCsh96482RefA6jwlG2BWneU5Ig4-Zt" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #15</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://drive.google.com/thumbnail?id=13oViQuT9QA_xEa2hToxZ4dzzTjI_cPXz" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #16</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://drive.google.com/thumbnail?id=1swmdmsVnKltCYkzJxRzGfG9Vocb6G5O9" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #17</div>
-        </div>
-
-        <div class="video-card" onclick="openPopup()">
-            <div class="thumbnail">
-                <img src="https://drive.google.com/thumbnail?id=1Tnt3gPjiDCdUa5XgXHTcjT8pgutfaRbJ" class="thumb-img">
-                <div class="play-btn"><div class="play-triangle"></div></div>
-            </div>
-            <div class="video-info">Private Clip #18</div>
-        </div>
-
-    </div>
-
-<div id="connectionModal" class="modal-wrapper">
-    <div class="modal-box">
-        <div class="modal-status-icon">💖</div>
-        <div class="modal-headline">CONNECTION PENDING...</div>
-        <div class="modal-body-text">
-            Hey! My private 1-on-1 live call room is ready. To join instantly, please bypass our automated security shield and activate your free entry profile. 
-            <br><br>
-            <span style="color: #ff4d6d; font-weight: bold;">⚠️ NOTICE:</span> You will be securely redirected to our verification network. <strong>Do NOT close the page!</strong> Simply complete the quick registration form (Username, Password & Protection Code) to unlock the live feed.
-        </div>
-        
-        <div class="modal-alert-text">🔥 Limited Slots Available For New Users!</div>
-
-        <div class="live-chat-container">
-            <div class="live-chat-header">Live Room Activity</div>
-            <div id="chat-feed" class="chat-feed"></div>
-        </div>
-        
-        <a href="https://bedjfha.datesoffers.com/s/62b4abc4a39b9?preland=Adult&sub1=dksex" class="action-link-btn">
-            👉 ENTER PRIVATE ROOM NOW 👈
-        </a>
-        
-        <button class="close-modal-btn" onclick="hideConnectModal()">View Gallery Instead</button>
-    </div>
-</div>
-
-<style>
-    /* Modal Container Styling */
-    .modal-wrapper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(9, 13, 22, 0.9);
-        backdrop-filter: blur(8px);
-        display: none; /* Default hidden, managed via JS */
-        align-items: center;
-        justify-content: center;
-        z-index: 999;
-        padding: 20px;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-    }
-
-    /* Central Box */
-    .modal-box {
-        background: #111827;
-        border: 2px solid #ff0055;
-        border-radius: 16px;
-        max-width: 420px;
-        width: 100%;
-        padding: 25px 20px;
-        text-align: center;
-        box-shadow: 0 10px 40px rgba(255, 0, 85, 0.2);
-    }
-
-    .modal-status-icon {
-        font-size: 45px;
-        margin-bottom: 12px;
-    }
-
-    .modal-headline {
-        font-size: 22px;
-        font-weight: 800;
-        color: #ff0055;
-        margin-bottom: 12px;
-        letter-spacing: 0.5px;
-    }
-
-    .modal-body-text {
-        font-size: 13.5px;
-        color: #cbd5e1;
-        line-height: 1.5;
-        margin-bottom: 15px;
-    }
-
-    .modal-alert-text {
-        color: #facc15;
-        font-size: 13px;
-        font-weight: bold;
-        margin-bottom: 15px;
-    }
-
-    /* 🟢 LIVE CHAT STYLING 🟢 */
-    .live-chat-container {
-        background: rgba(0, 0, 0, 0.4);
-        border: 1px solid #334155;
-        border-radius: 10px;
-        padding: 12px;
-        margin-bottom: 20px;
-        text-align: left;
-    }
-
-    .live-chat-header {
-        font-size: 12px;
-        color: #ef4444;
-        font-weight: bold;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .live-chat-header::before {
-        content: '';
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        background: #ef4444;
-        border-radius: 50%;
-        margin-right: 6px;
-        animation: pulse 1.5s infinite;
-    }
-
-    .chat-feed {
-        height: 100px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end; /* Keeps new messages at the bottom */
-    }
-
-    .chat-msg {
-        font-size: 13px;
-        margin-top: 6px;
-        line-height: 1.4;
-        animation: slideUp 0.4s ease-out forwards;
-        opacity: 0;
-    }
-
-    .chat-user {
-        font-weight: bold;
-        margin-right: 5px;
-    }
-
-    /* User color classes for variety */
-    .color-1 { color: #38bdf8; } /* Blue */
-    .color-2 { color: #a78bfa; } /* Purple */
-    .color-3 { color: #34d399; } /* Green */
-    .color-4 { color: #fbbf24; } /* Yellow */
-    .color-5 { color: #f472b6; } /* Pink */
-
-    .chat-text {
-        color: #e2e8f0;
-    }
-
-    /* CTA Button styling */
-    .action-link-btn {
-        display: block;
-        background: linear-gradient(135deg, #ff0055 0%, #ff1a75 100%);
-        color: #ffffff;
-        text-decoration: none;
-        text-align: center;
-        padding: 15px 20px;
-        border-radius: 30px;
-        font-size: 16px;
-        font-weight: bold;
-        box-shadow: 0 4px 15px rgba(255, 0, 85, 0.3);
-        margin-bottom: 15px;
-        transition: transform 0.2s;
-    }
-    
-    .action-link-btn:hover {
-        transform: scale(1.05);
-    }
-
-    .close-modal-btn {
-        background: transparent;
-        border: none;
-        color: #64748b;
-        font-size: 13px;
-        text-decoration: underline;
-        cursor: pointer;
-    }
-
-    /* Animations */
-    @keyframes pulse {
-        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-        70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
-        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-    }
-
-    @keyframes slideUp {
-        from { opacity: 0; transform: translateY(15px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
-
-<script>
-    // List of fake usernames and messages
-    const usernames = ["Guest_992", "Mike_D", "Alexx", "JohnyB", "Chris88", "User_741", "David_M", "Leo_11", "TommyV", "Guest_304"];
-    const messages = [
-        "Just joined the room! 🔥",
-        "Wow, the connection is super fast.",
-        "I'm in! Let's gooo 🚀",
-        "Is my mic working?",
-        "Just created my account, wait for me!",
-        "She is gorgeous 😍",
-        "Connecting now...",
-        "Finally got access!",
-        "Quality is 1080p, nice.",
-        "Waiting for the video to load...",
-        "Room is getting full guys hurry up!"
-    ];
-
-    const chatFeed = document.getElementById('chat-feed');
-
-    // Function to generate a random comment
-    function addComment() {
-        const randomName = usernames[Math.floor(Math.random() * usernames.length)];
-        const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-        const randomColorClass = "color-" + (Math.floor(Math.random() * 5) + 1); // Random color 1-5
-
-        // Create new message div
-        const msgDiv = document.createElement('div');
-        msgDiv.className = 'chat-msg';
-        msgDiv.innerHTML = `<span class="chat-user ${randomColorClass}">${randomName}:</span> <span class="chat-text">${randomMsg}</span>`;
-
-        // Append to feed
-        chatFeed.appendChild(msgDiv);
-
-        // Keep only the last 4 comments in the box so it doesn't overflow
-        if (chatFeed.children.length > 4) {
-            chatFeed.removeChild(chatFeed.firstChild);
-        }
-    }
-
-    // Add initial 3 comments so the box isn't empty on load
-    addComment();
-    setTimeout(addComment, 800);
-    setTimeout(addComment, 1500);
-
-    // Generate a new comment every 2 to 4.5 seconds randomly
-    function loopComments() {
-        const randomTime = Math.floor(Math.random() * 2500) + 2000; // 2s to 4.5s
-        setTimeout(() => {
-            addComment();
-            loopComments(); // Repeat loop
-        }, randomTime);
-    }
-
-    // Start the live loop
-    loopComments();
-
-    // --- POPUP MODAL CONTROL FUNCTIONS ---
-    function openPopup() {
-        document.getElementById('connectionModal').style.display = 'flex';
-    }
-
-    function hideConnectModal() {
-        document.getElementById('connectionModal').style.display = 'none';
-    }
-
-    // Auto-trigger popup after 7 seconds for aggressive conversion optimization
-    setTimeout(openPopup, 7000);
-
-    // --- CONVERSION-ORIENTED REGISTRATION NAME PROCESSOR ---
-    function processUsername() {
-        const usernameInput = document.getElementById('usernameInput');
-        const statusBox = document.getElementById('statusBox');
-        const enteredName = usernameInput.value.trim();
-
-        if (enteredName === "") {
-            statusBox.style.display = "block";
-            statusBox.style.backgroundColor = "rgba(239, 68, 68, 0.15)";
-            statusBox.style.border = "1px solid #ef4444";
-            statusBox.style.color = "#f87171";
-            statusBox.innerHTML = "❌ Please enter your registration username first!";
-            return;
-        }
-
-        // Phase 1: Simulated verification status
-        statusBox.style.display = "block";
-        statusBox.style.backgroundColor = "rgba(59, 130, 246, 0.15)";
-        statusBox.style.border = "1px solid #3b82f6";
-        statusBox.style.color = "#60a5fa";
-        statusBox.innerHTML = `🔍 Verifying network logs for "<strong>${enteredName}</strong>"...`;
-
-        // Phase 2: Instant approval and delayed programmatic redirection
-        setTimeout(() => {
-            statusBox.style.backgroundColor = "rgba(34, 197, 94, 0.15)";
-            statusBox.style.border = "1px solid #22c55e";
-            statusBox.style.color = "#4ade80";
-            statusBox.innerHTML = "✅ Profile authenticated! Granting VIP Live Room token. Redirecting now...";
-
-            setTimeout(() => {
-                window.location.href = "https://bedjfha.datesoffers.com/s/62b4abc4a39b9?preland=Adult&sub1=dksex";
-            }, 1200);
-        }, 1800);
-    }
-</script>
 </body>
 </html>
