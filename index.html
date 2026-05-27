@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Live Room & Control Dashboard</title>
+    <title>VIP Premium Access Dashboard</title>
     <style>
         :root {
-            --primary: #ff0055;
-            --primary-glow: rgba(255, 0, 85, 0.6);
-            --secondary: #00f0ff;
-            --secondary-glow: rgba(0, 240, 255, 0.6);
-            --bg-dark: #06060c;
-            --glass: rgba(255, 255, 255, 0.07);
-            --glass-glowing: rgba(255, 255, 255, 0.15);
-            --border: rgba(255, 255, 255, 0.12);
-            --text-main: #ffffff;
-            --text-muted: #a0a0b0;
+            --primary: #ff007f;
+            --primary-glow: rgba(255, 0, 127, 0.6);
+            --secondary: #7000ff;
+            --secondary-glow: rgba(112, 0, 255, 0.6);
+            --bg-dark: #0f0c29;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-light: #ffffff;
+            --text-muted: #b3b3b3;
         }
 
         * {
@@ -27,115 +26,105 @@
         }
 
         body {
-            background: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle at 80% 10%, #3b0066 0%, transparent 50%),
-                radial-gradient(circle at 10% 90%, #001a3a 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, #140526 0%, #06060c 100%);
-            color: var(--text-main);
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: var(--text-light);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            padding: 20px;
             overflow-x: hidden;
         }
 
         /* Ultimate Master Dashboard Container */
-        .dashboard-wrapper {
+        .container {
+            max-width: 800px;
             width: 100%;
-            max-width: 480px;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            background: rgba(10, 10, 20, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-left: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
         /* Premium Header */
-        .app-header {
-            padding: 15px;
+        .header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border);
-            background: rgba(0, 0, 0, 0.3);
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        .profile-section {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .avatar-container {
-            position: relative;
-            width: 45px;
-            height: 45px;
-        }
-
-        .avatar-img {
-            width: 100%;
-            height: 100%;
+        .profile-pic {
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            border: 2px solid var(--primary);
+            border: 3px solid var(--primary);
             object-fit: cover;
-            box-shadow: 0 0 10px var(--primary-glow);
+            box-shadow: 0 0 15px var(--primary-glow);
         }
 
-        .online-dot {
-            position: absolute;
-            bottom: 2px;
-            right: 2px;
+        .header-info h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .verified-badge {
+            background: linear-gradient(135deg, var(--secondary), #ff00aa);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px var(--secondary-glow);
+        }
+
+        .status {
+            color: #00ff88;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .status-dot {
             width: 10px;
             height: 10px;
-            background: #00ff66;
+            background: #00ff88;
             border-radius: 50%;
             border: 2px solid #000;
             animation: pulse-green 1.5s infinite;
         }
 
-        .profile-info h2 {
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .verified-badge {
-            color: var(--secondary);
-            font-size: 14px;
-        }
-
-        .profile-info p {
-            font-size: 11px;
-            color: #00ffaa;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         /* Video / Streaming Area */
-        .video-canvas {
+        .media-area {
             width: 100%;
-            height: 40%;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80') center/cover;
-            position: relative;
+            height: 350px;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://github.com/sdhujtrgfkitrye4w63456754-source/photo/blob/423c45f1f7ffc39b305aef4a2a4d2516e13a6688/GsKNHUXXsAA_z4C.jpg?raw=true') center/cover;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 2px solid var(--primary);
+            position: relative;
+            margin-bottom: 25px;
+            border: 1px solid var(--glass-border);
             cursor: pointer;
             overflow: hidden;
         }
 
-        .video-canvas::before {
+        .media-area::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -149,7 +138,7 @@
             left: 15px;
             background: linear-gradient(90deg, #ff0055, #ff00aa);
             color: white;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 4px;
             font-weight: bold;
             font-size: 11px;
@@ -166,7 +155,7 @@
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(5px);
             border: 1px solid var(--border);
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 500;
@@ -188,15 +177,21 @@
             box-shadow: 0 0 25px var(--primary-glow);
             animation: pulse-glow 2s infinite;
             z-index: 2;
-            transition: transform 0.2s;
         }
 
-        .play-center-btn:hover {
-            transform: scale(1.1);
+        /* Call & Action Dashboard Grid */
+        .dashboard-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
-        /* Interactive Master Control Grid */
-        .control-grid {
+        .action-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
@@ -205,7 +200,7 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .control-item {
+        .action-card {
             background: var(--glass);
             border: 1px solid var(--border);
             border-radius: 12px;
@@ -219,39 +214,40 @@
             gap: 6px;
         }
 
-        .control-item:hover {
-            background: var(--glass-glowing);
+        .action-card:hover {
+            background: rgba(255, 255, 255, 0.15);
             border-color: var(--secondary);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 240, 255, 0.2);
         }
 
-        .control-item.call-active {
+        .action-card.call-active {
             border-color: #00ff66;
             background: rgba(0, 255, 102, 0.05);
         }
-        .control-item.call-active:hover {
+        .action-card.call-active:hover {
             box-shadow: 0 5px 15px rgba(0, 255, 102, 0.3);
         }
 
-        .control-icon {
+        .action-icon {
             font-size: 22px;
+            margin-bottom: 5px;
             filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
         }
 
-        .control-item h3 {
+        .action-card h4 {
             font-size: 12px;
             font-weight: 600;
             color: var(--text-main);
         }
 
-        .control-item p {
+        .action-card p {
             font-size: 10px;
             color: var(--text-muted);
         }
 
         /* Live Chat Stream Section */
-        .chat-container {
+        .chat-section {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -315,7 +311,7 @@
         }
 
         /* Input Form Interaction */
-        .chat-input-wrapper {
+        .chat-input-area {
             display: flex;
             gap: 10px;
             padding-top: 12px;
@@ -336,7 +332,7 @@
 
         .interactive-input:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
         }
 
         .send-action-btn {
@@ -354,13 +350,93 @@
             transition: transform 0.2s;
         }
 
-        .send-action-btn:hover {
-            transform: scale(1.05);
+        /* GATED MODAL SYSTEM (CONVERSION ENGINE) */
+        .conversion-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 20000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
         }
 
-        /* ------------------------------------------------ */
-        /* MASTER LEVEL FULL-SCREEN INCOMING CALL SIMULATION */
-        /* ------------------------------------------------ */
+        .conversion-modal-overlay.is-active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .conversion-box {
+            background: linear-gradient(145deg, #1a1a2e, #100d23);
+            border: 2px solid var(--primary);
+            border-radius: 24px;
+            padding: 35px 25px;
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 0, 127, 0.4);
+            transform: scale(0.85);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .conversion-modal-overlay.is-active .conversion-box {
+            transform: scale(1);
+        }
+
+        .lock-icon-glow {
+            font-size: 45px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px var(--primary));
+        }
+
+        .conversion-box h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            color: var(--primary);
+        }
+
+        .conversion-box p {
+            font-size: 14px;
+            color: #b0afc2;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        /* CTA to Offer - same tab */
+        .master-cta-anchor {
+            display: block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 20px rgba(255, 0, 127, 0.4);
+            transition: all 0.2s;
+        }
+
+        .dismiss-link {
+            display: inline-block;
+            margin-top: 18px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        /* FULL-SCREEN INCOMING CALL SIMULATION */
         .fullscreen-call-overlay {
             position: fixed;
             top: 0;
@@ -378,20 +454,6 @@
             animation: fadeIn 0.5s ease;
         }
 
-        .call-header-info {
-            text-align: center;
-        }
-
-        .call-title {
-            color: var(--secondary);
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-            font-weight: 700;
-            text-shadow: 0 0 10px var(--secondary-glow);
-        }
-
         .caller-name {
             font-size: 28px;
             font-weight: 600;
@@ -403,11 +465,6 @@
             color: #00ffaa;
             font-weight: 500;
             animation: pulse-text 1.2s infinite;
-        }
-
-        .caller-avatar-wrapper {
-            position: relative;
-            margin: 40px 0;
         }
 
         .caller-avatar-huge {
@@ -437,11 +494,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .circle-call-btn:hover {
-            transform: scale(1.1);
+            transition: transform 0.2s;
         }
 
         .btn-reject-call {
@@ -455,250 +508,88 @@
             animation: shake-bounce 1s infinite;
         }
 
-        .secure-notice {
-            font-size: 11px;
-            color: rgba(255,255,255,0.3);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* ------------------------------------------------ */
-        /* GATEKEEPER MODAL SYSTEM (CONVERSION ENGINE)     */
-        /* ------------------------------------------------ */
-        .conversion-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 20000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-
-        .conversion-modal-overlay.is-active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .conversion-box {
-            background: linear-gradient(145deg, #16122c, #0d0a1a);
-            border: 2px solid var(--primary);
-            border-radius: 24px;
-            padding: 35px 25px;
-            width: 90%;
-            max-width: 380px;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(255, 0, 85, 0.4);
-            transform: scale(0.85);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .conversion-modal-overlay.is-active .conversion-box {
-            transform: scale(1);
-        }
-
-        .lock-icon-glow {
-            font-size: 45px;
-            margin-bottom: 15px;
-            animation: float 2s infinite ease-in-out;
-            filter: drop-shadow(0 0 10px var(--primary));
-        }
-
-        .conversion-box h2 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
-            background: linear-gradient(90deg, #ffffff, #ffb3d1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .conversion-box p {
-            font-size: 14px;
-            color: #b0afc2;
-            line-height: 1.5;
-            margin-bottom: 25px;
-        }
-
-        /* CRITICAL: Target is explicitly omitted or set to _self to stay in same window */
-        .master-cta-anchor {
-            display: block;
-            background: linear-gradient(90deg, #ff0055, #ff00a0);
-            color: white;
-            text-decoration: none;
-            padding: 14px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 8px 20px rgba(255, 0, 85, 0.4);
-            transition: all 0.2s;
-        }
-
-        .master-cta-anchor:hover {
-            box-shadow: 0 12px 25px rgba(255, 0, 85, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .dismiss-link {
-            display: inline-block;
-            margin-top: 18px;
-            font-size: 12px;
-            color: rgba(255,255,255,0.3);
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .dismiss-link:hover {
-            color: rgba(255,255,255,0.6);
-        }
-
         /* KEYFRAMES ANIMATIONS */
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7); }
-            70% { box-shadow: 0 0 0 8px rgba(0, 255, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
-        }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 0, 85, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); }
-        }
-        @keyframes deep-pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.6); }
-            70% { box-shadow: 0 0 0 25px rgba(255, 0, 85, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); }
-        }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(0, 255, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); } }
+        @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 0, 85, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); } }
+        @keyframes deep-pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0.6); } 70% { box-shadow: 0 0 0 25px rgba(255, 0, 127, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0); } }
         @keyframes blink { 50% { opacity: 0.4; } }
-        @keyframes popIn {
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; } to { opacity: 1; }
-        }
-        @keyframes pulse-text {
-            50% { opacity: 0.5; }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-        @keyframes shake-bounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            20% { transform: translateY(-6px) rotate(-3deg); }
-            40% { transform: translateY(-6px) rotate(3deg); }
-            60% { transform: translateY(0) rotate(-3deg); }
-            80% { transform: translateY(0) rotate(3deg); }
-        }
+        @keyframes popIn { to { opacity: 1; transform: scale(1) translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes pulse-text { 50% { opacity: 0.5; } }
+        @keyframes shake-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
     </style>
 </head>
 <body>
 
-    <!-- MASTER UTILITY DASHBOARD CONTAINER -->
-    <div class="dashboard-wrapper">
-        
-        <!-- Header Profile Grid -->
-        <div class="app-header">
-            <div class="profile-section">
-                <div class="avatar-container">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="VIP Private Host" class="avatar-img">
-                    <div class="online-dot"></div>
-                </div>
-                <div class="profile-info">
-                    <h2>VIP Private Room <span class="verified-badge">✔</span></h2>
-                    <p>HD Interactive Feed</p>
-                </div>
-            </div>
-            <div class="counter-tag" style="position: static; font-size: 11px;">
-                🔴 <span id="headerViewerCount">2,489</span> Active
+    <div class="container">
+        <div class="header">
+            <img src="https://github.com/sdhujtrgfkitrye4w63456754-source/photo/blob/423c45f1f7ffc39b305aef4a2a4d2516e13a6688/GsKNHUXXsAA_z4C.jpg?raw=true" alt="Profile" class="profile-pic">
+            <div class="header-info">
+                <h1>VIP Premium Access</h1>
+                <div class="verified-badge">✔ Verified Profile</div>
+                <div class="status"><div class="status-dot"></div>HD Interactive Feed</div>
             </div>
         </div>
 
-        <!-- Premium Video Media Section -->
-        <div class="video-canvas" onclick="triggerGatedModal('Private Stream Access', 'Unlock the private high-definition audio & video feed by performing verification.')">
+        <div class="media-area" onclick="triggerGatedModal('Private Stream Access', 'Lock the private high-definition audio & video feed by performing verification.')">
             <div class="live-tag">LIVE</div>
             <div class="counter-tag">👁 <span id="videoViewerCount">2,489</span></div>
             <div class="play-center-btn">▶</div>
         </div>
 
-        <!-- Action Control Dashboard Grid (Simulates interactive calling/receiving) -->
         <div class="control-grid">
-            <div class="control-item call-active" onclick="simulateOutgoingCall()">
+            <div class="action-card call-active" onclick="simulateOutgoingCall()">
                 <div class="control-icon">📞</div>
-                <h3>Voice Call</h3>
-                <p style="color: #00ff66;">Connect Instant</p>
+                <h3>VIP Call</h3>
+                <p style="color: #00ff66;">Instant Connect</p>
             </div>
-            <div class="control-item" onclick="triggerGatedModal('Secure Chat Portal', 'Creating a free profile is required to send private multimedia attachments.')">
+            <div class="action-card" onclick="triggerGatedModal('Private Message', 'Messaging requires a verified profile to send attachments.')">
                 <div class="control-icon">💬</div>
-                <h3>Direct DM</h3>
-                <p>99+ Unread</p>
+                <h3>Send Message</h3>
+                <p>Private DM</p>
             </div>
-            <div class="control-item" onclick="triggerGatedModal('Premium Gallery Vault', 'Gain access to the exclusive, vault containing archived stream highlights.')">
+            <div class="action-card" onclick="triggerGatedModal('Premium Gallery Vault', 'Gain access to exclusive archived photos and videos.')">
                 <div class="control-icon">🔒</div>
                 <h3>Private Vault</h3>
-                <p>142 Items</p>
+                <p>Locked Items</p>
             </div>
         </div>
 
-        <!-- Master Live Comment Chat Stream -->
-        <div class="chat-container">
+        <div class="chat-section">
             <div class="chat-meta">
-                <span>💬 Interactive Chat Log</span>
-                <span style="color: var(--primary); font-weight: bold;" id="totalCommentsCounter">4,192 Comments</span>
+                <span>💬 Private Room Chat</span>
+                <span id="totalCommentsCounter" style="color: var(--primary); font-weight: bold;">4,192 Comments</span>
             </div>
-
             <div class="chat-stream" id="liveChatFlow">
-                <!-- Live high-converting auto-comments will pop up here dynamically -->
-            </div>
-
-            <!-- Fake Interactive Chat Input Fields -->
-            <div class="chat-input-wrapper">
-                <input type="text" class="interactive-input" placeholder="Say something nice..." onclick="triggerGatedModal('Join Public Chat', 'Verify your connection by opening a free account to join the conversation live.')">
-                <button class="send-action-btn" onclick="triggerGatedModal('Join Public Chat', 'Verify your connection by opening a free account to join the conversation live.')">➤</button>
+                </div>
+            <div class="chat-input-area">
+                <input type="text" class="interactive-input" placeholder="Type your comment..." onclick="triggerGatedModal('Join Chat', 'Creating a free profile is required to join the conversation live.')">
+                <button class="send-action-btn" onclick="triggerGatedModal('Join Chat', 'Creating a free profile is required to join the conversation live.')">➤</button>
             </div>
         </div>
-
     </div>
 
-    <!-- 10-SECOND FULL SCREEN INCOMING CALL OVERLAY -->
     <div class="fullscreen-call-overlay" id="fullScreenCallBox">
-        <div class="call-header-info">
-            <div class="call-title">Incoming Private Request</div>
-            <div class="caller-name">VIP Private Host</div>
-            <div class="call-status-text">Requested Video Connection...</div>
+        <div></div> <div class="caller-avatar-wrapper">
+            <img src="https://github.com/sdhujtrgfkitrye4w63456754-source/photo/blob/423c45f1f7ffc39b305aef4a2a4d2516e13a6688/GsKNHUXXsAA_z4C.jpg?raw=true" alt="Caller" class="caller-avatar-huge">
         </div>
-
-        <div class="caller-avatar-wrapper">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Caller" class="caller-avatar-huge">
-        </div>
-
-        <div>
+        <div style="text-align: center; color: white;">
+            <div class="caller-name">VIP Host Request</div>
+            <div class="call-status-text">Video Call Pending...</div>
             <div class="call-controls-row">
-                <!-- Both buttons execute high-converting redirection to the CPA target link -->
                 <button class="circle-call-btn btn-reject-call" onclick="executeOfferRedirect()">✖</button>
                 <button class="circle-call-btn btn-accept-call" onclick="executeOfferRedirect()">📞</button>
             </div>
-            <div class="secure-notice">🔒 End-to-End Encrypted Tunnel</div>
+            <div style="font-size: 11px; color: rgba(255,255,255,0.3); text-transform: uppercase;">🔒 End-to-End Encrypted Tunnel</div>
         </div>
     </div>
 
-    <!-- CONVERSION CORE MODAL (Gated Locker) -->
     <div class="conversion-modal-overlay" id="conversionLocker">
         <div class="conversion-box">
             <div class="lock-icon-glow">🔒</div>
             <h2 id="modalHeadline">Authentication Required</h2>
-            <p id="modalDescription">To complete this secure operation, please perform a quick verification by setting up your lifetime account.</p>
+            <p id="modalDescription">A secure link could not be established. To connect with me and perform this action, please perform a quick verification check by setting up your lifetime free account.</p>
             
-            <!-- CRITICAL: No target="_blank", ensures the CPA offer link opens perfectly in the same tab -->
             <a href="https://t.taffizerq.com/719iel" class="master-cta-anchor" target="_self">Verify Account Instantly</a>
             
             <div class="dismiss-link" onclick="closeGatedModal()">Decline & Disconnect</div>
@@ -706,31 +597,26 @@
     </div>
 
     <script>
-        // TARGET CPA OFFER LINK DEFINITION
-        const ACTION_URL = "https://t.taffizerq.com/719iel";
-
+        const OFFER_URL = "https://t.taffizerq.com/719iel";
         const lockerOverlay = document.getElementById('conversionLocker');
         const modalHeadline = document.getElementById('modalHeadline');
         const modalDescription = document.getElementById('modalDescription');
         const chatStreamBox = document.getElementById('liveChatFlow');
 
-        // Dynamic High-Reach Marketing Comments Database
+        // Dynamic High-Reach Marketing Comments Pool
         const masterCommentsPool = [
-            { name: "Jessica_Vip", text: "Omg finally connected! The stream quality is amazing tonight! 😍", color: "#ff00aa" },
-            { name: "Alex_983", text: "How do I start the direct video stream call? Please answer!", color: "#00f0ff" },
-            { name: "MarcusK", text: "Just verified my profile, it took literally 1 minute guys! Totally worth it! 🔥", color: "#00ffaa" },
-            { name: "Guest_4821", text: "Wow, is this actually live right now? Greetings from Miami! 🇺🇸", color: "#ffaa00" },
-            { name: "Dave_Pro", text: "Wow look at the dashboard options, super premium feel.", color: "#cc00ff" },
-            { name: "Samantha_X", text: "Sent you a private gift! Did you receive it? 🎁", color: "#ff0055" },
-            { name: "Lucas_T", text: "The connection is incredibly smooth. Highly recommended profile!", color: "#00ff66" },
-            { name: "Emma_Glow", text: "Are you accepting incoming voice call requests right now?", color: "#ff00ff" },
-            { name: "Brian_V", text: "Just completed the fast signup, the vault items are insane! 😱", color: "#00e5ff" }
+            { name: "Sarah_VIP", text: "Wow, just made an account! Finally, the connection works! 😍", color: "#ff00aa" },
+            { name: "Dave_Pro", text: "Is the video feed really 1080p? The dashboard looks amazing.", color: "#cc00ff" },
+            { name: "SamanthaX", text: "I'm on a private call now! Verification took less than a minute! 🔥", color: "#ff0055" },
+            { name: "Guest_4821", text: "Hello from NYC! 🇺🇸 How do I unlock the gallery vault?", color: "#ffaa00" },
+            { name: "Mike_199", text: "The quality is so good today.", color: "#00f0ff" },
+            { name: "LucasT", text: "Sent a private gift! Did you receive it? 🎁", color: "#00ff66" }
         ];
 
         let commentSequence = 0;
         let totalCommentsBase = 4192;
 
-        // Function to seed and loop live stream chat messages automatically
+        // Function to loop live chat messages automatically
         function streamLiveComments() {
             if (commentSequence >= masterCommentsPool.length) {
                 commentSequence = 0; // Loop seamlessly
@@ -747,28 +633,16 @@
             `;
 
             chatStreamBox.appendChild(bubbleElement);
-            chatStreamBox.scrollTop = chatStreamBox.scrollHeight; // Keep view at the absolute bottom
+            chatStreamBox.scrollTop = chatStreamBox.scrollHeight;
             commentSequence++;
 
-            // Increment public counter stats slightly to show active live engagement
             totalCommentsBase += Math.floor(Math.random() * 3) + 1;
             document.getElementById('totalCommentsCounter').innerText = totalCommentsBase.toLocaleString() + " Comments";
 
-            // Random delay algorithm to mimic authentic user messaging pattern (1.5s to 3.5s)
             let adaptiveDelay = Math.floor(Math.random() * (3500 - 1500 + 1)) + 1500;
             setTimeout(streamLiveComments, adaptiveDelay);
         }
-
-        // Kickstart the live chat logic immediately on load
-        setTimeout(streamLiveComments, 800);
-
-        // Active Viewer Multiplier Simulation
-        let liveViewersCount = 2489;
-        setInterval(() => {
-            liveViewersCount += Math.floor(Math.random() * 6) - 2; // fluctuate organically
-            document.getElementById('videoViewerCount').innerText = liveViewersCount.toLocaleString();
-            document.getElementById('headerViewerCount').innerText = liveViewersCount.toLocaleString();
-        }, 2500);
+        setTimeout(streamLiveComments, 1000);
 
         // Core Gated Modal Launcher
         function triggerGatedModal(headlineText, descriptionText) {
@@ -781,30 +655,32 @@
             lockerOverlay.classList.remove('is-active');
         }
 
-        // Action Trigger: Outgoing Call Click Logic (Simulates calling -> redirects to account gate)
+        // Action Trigger: Dashboard Call Click Logic (Simulates calling -> pops gated modal)
         function simulateOutgoingCall() {
             const callBtnText = document.querySelector('.call-active h3');
-            const originalLabel = callBtnText.innerText;
-            
             callBtnText.innerText = "Connecting...";
             document.querySelector('.call-active').style.borderColor = "#ffaa00";
 
             setTimeout(() => {
-                callBtnText.innerText = originalLabel;
+                callBtnText.innerText = "VIP Call";
                 document.querySelector('.call-active').style.borderColor = "#00ff66";
-                triggerGatedModal('Connection Terminated', 'Secure link could not be established. Please create a verified free profile to authorize secure voice routing.');
+                // Persuasive message explaining *how to connect*
+                triggerGatedModal('Let\'s Connect! 🔒', 'I want to talk to you too! However, I can\'t handle direct private calls until you verify your profile. It\'s a quick, free security check to make sure we\'re both real. After that, we can have our 1-on-1 private video chat. I\'m waiting! Click below to create your account and unlock my room.');
             }, 1800);
         }
 
         // AUTOMATED CRITICAL TRIGGER: 10-Second Fullscreen Incoming Call Simulation
         setTimeout(() => {
             document.getElementById('fullScreenCallBox').style.display = 'flex';
-        }, 10000); // Strict 10-second mark injection
+        }, 10000);
 
         // Secure Same-Tab Redirection Engine
         function executeOfferRedirect() {
-            window.location.href = ACTION_URL;
+            window.location.href = OFFER_URL;
         }
     </script>
 </body>
 </html>
+"""
+
+with open("premium_gated_meet.html", "w", encoding="utf-8") as file:
