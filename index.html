@@ -8,54 +8,62 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         body { 
-            background: radial-gradient(circle at top right, #0f0c1b, #05020a); 
+            /* Premium Cyber-Romantic Gradient */
+            background: radial-gradient(circle at top right, #1A0B2E, #0D0F1D); 
             color: #ffffff; 
             font-family: 'Inter', sans-serif; 
             overflow-x: hidden; 
         }
         .glass-panel { 
-            background: rgba(25, 18, 41, 0.65); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
+            /* Enhanced Glassmorphism */
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.08); 
         }
         .btn-premium {
-            background: linear-gradient(135deg, #00e5ff, #7000ff);
-            box-shadow: 0 4px 20px rgba(0, 229, 255, 0.4);
+            /* Hot Coral / Neon Rose Action Button */
+            background: linear-gradient(135deg, #FF2E93, #FF5E62);
+            box-shadow: 0 4px 20px rgba(255, 46, 147, 0.4);
             transition: all 0.3s ease;
         }
         .btn-premium:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0, 229, 255, 0.6);
+            box-shadow: 0 6px 25px rgba(255, 46, 147, 0.6);
         }
         @keyframes pulse-glow {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.05); opacity: 0.8; }
         }
         .live-pulse { animation: pulse-glow 2s infinite; }
+        
+        /* Custom Scrollbar for Chat */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #FF2E93; border-radius: 10px; }
     </style>
 </head>
 <body class="min-h-screen pb-24 relative" onclick="initAudioContext()">
 
     <audio id="ringtone" src="https://assets.mixkit.co/active_storage/sfx/2870/2870-preview.mp3" loop preload="auto"></audio>
 
-    <div class="fixed top-4 right-4 z-50 bg-red-600/90 border border-red-500 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg backdrop-blur-md">
-        <span class="w-2 h-2 bg-white rounded-full animate-ping"></span>
-        <span>🔴 Private Stream | Viewers: 1 (Only You)</span>
+    <div class="fixed top-4 right-4 z-50 bg-[#FF2E93]/20 border border-[#FF2E93] text-[#FF2E93] px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 shadow-[0_0_15px_rgba(255,46,147,0.3)] backdrop-blur-md">
+        <span class="w-2 h-2 bg-[#FF2E93] rounded-full animate-ping"></span>
+        <span>🔴 Live Node: Secure</span>
     </div>
 
     <main class="w-full max-w-2xl mx-auto p-4 pt-8">
         
-        <div class="glass-panel p-6 rounded-3xl flex flex-col sm:flex-row items-center gap-5 mb-6 text-center sm:text-left relative overflow-hidden">
-            <div class="absolute -right-10 -top-10 w-40 h-40 bg-[#7000ff]/10 rounded-full blur-3xl"></div>
+        <div class="glass-panel p-6 rounded-3xl flex flex-col sm:flex-row items-center gap-5 mb-4 text-center sm:text-left relative overflow-hidden shadow-2xl">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-[#FF2E93]/10 rounded-full blur-3xl"></div>
             <div class="relative">
-                <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-24 h-24 rounded-full border-4 border-[#00e5ff] object-cover bg-black shadow-2xl">
+                <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-24 h-24 rounded-full border-4 border-[#FF2E93] object-cover bg-black shadow-[0_0_20px_rgba(255,46,147,0.4)]">
                 <span class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-[#140e26] rounded-full"></span>
             </div>
             <div>
                 <div class="flex items-center justify-center sm:justify-start gap-2">
                     <h1 class="text-2xl font-black tracking-wide">Dr. Lisa Christiansen</h1>
-                    <span class="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[10px] uppercase px-2 py-0.5 rounded font-bold">Verified Agent</span>
+                    <span class="bg-[#FF2E93]/20 text-[#FF2E93] border border-[#FF2E93]/30 text-[10px] uppercase px-2 py-0.5 rounded font-bold">Verified Real</span>
                 </div>
                 <p class="text-gray-400 text-sm mt-1">Private Security Cam & VIP Intercom Node</p>
                 <p class="text-xs text-emerald-400 font-semibold mt-2 flex items-center justify-center sm:justify-start gap-1">
@@ -64,208 +72,127 @@
             </div>
         </div>
 
+        <div class="glass-panel p-4 rounded-2xl mb-6 border-l-4 border-[#FF2E93] bg-[#FF2E93]/5">
+            <p class="text-[11px] sm:text-xs text-gray-300 leading-relaxed">
+                <strong class="text-white">🚨 Important Note:</strong> I am currently home alone with my dog and my private room node is fully active. Please do not join if you are not ready for a real 1-on-1 interaction. I am looking for active, real people to connect with right now. Absolutely NO bots or fake profiles allowed! ❌🐶
+            </p>
+        </div>
+
         <div class="glass-panel p-3 rounded-3xl mb-6 relative group">
             <div class="relative rounded-2xl overflow-hidden aspect-video bg-black">
                 <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HGTqY9UX0AAUZlR.jpg" class="w-full h-full object-cover opacity-85">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 flex flex-col justify-between p-4">
-                    <span class="bg-black/60 border border-white/10 text-white text-[10px] px-2.5 py-1 rounded-md font-bold self-start backdrop-blur-sm">
-                        🔒 MAIN ROOM CAMERA
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 flex flex-col justify-between p-4">
+                    <span class="bg-[#FF2E93]/80 border border-white/20 text-white text-[10px] px-2.5 py-1 rounded-md font-bold self-start backdrop-blur-sm shadow-[0_0_10px_rgba(255,46,147,0.5)]">
+                        🔒 CONNECT TO DR. LISA'S PRIVATE INTERCOM
                     </span>
-                    <button onclick="openTrapPopup()" class="w-16 h-16 bg-white/10 border border-white/20 text-[#00e5ff] rounded-full flex items-center justify-center self-center text-3xl hover:scale-110 transition live-pulse backdrop-blur-md shadow-[0_0_30px_rgba(0,229,255,0.3)]">
+                    <button onclick="openTrapPopup()" class="w-16 h-16 bg-white/10 border border-[#FF2E93]/50 text-[#FF2E93] rounded-full flex items-center justify-center self-center text-3xl hover:scale-110 transition live-pulse backdrop-blur-md shadow-[0_0_30px_rgba(255,46,147,0.4)]">
                         ▶
                     </button>
-                    <p class="text-center text-xs font-semibold tracking-wide text-gray-300">Tap to establish full high-definition feed connection</p>
+                    <p class="text-center text-[11px] sm:text-xs font-semibold tracking-wide text-[#FF2E93] bg-black/50 p-1.5 rounded-lg backdrop-blur-md border border-white/10">
+                        [Select Preference Inside: 🎥 Video Call | 📞 Audio Call | 👁️ Live Stream View]
+                    </p>
                 </div>
             </div>
         </div>
 
-        <h2 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-3 px-1">Secure Contact Dashboard (Locked)</h2>
+        <h2 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-3 px-1 border-b border-white/10 pb-2">Secure Contact Dashboard (Locked)</h2>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#00e5ff]/50 transition relative group">
+            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#FF2E93]/50 hover:bg-[#FF2E93]/5 transition relative group">
                 <span class="absolute top-2 right-2 text-xs">🔒</span>
                 <svg class="w-8 h-8 mx-auto mb-2 text-green-500 opacity-90 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.37 5.378 0 12.003 0a11.94 11.94 0 0 1 8.484 3.515c2.27 2.27 3.519 5.287 3.519 8.492 0 6.63-5.375 12-12 12-2.003-.001-3.973-.5-5.729-1.449L0 24zm6.59-4.846c1.665.989 3.3 1.513 5.355 1.515 5.548 0 10.064-4.516 10.066-10.064.001-2.686-1.044-5.21-2.945-7.111A10.007 10.007 0 0 0 12.003 1.93c-5.553 0-10.07 4.517-10.072 10.065-.001 2.132.56 4.211 1.626 6.059L2.536 21.46l3.619-1.48a9.97 9.97 0 0 0 4.492 1.174zm11.332-7.666c-.301-.151-1.781-.879-2.056-.979-.275-.1-.475-.151-.675.151-.2.301-.775.979-.95 1.178-.175.2-.35.226-.65.075-1.206-.605-2.062-1.053-2.883-2.464-.22-.377.22-.35.629-1.169.075-.151.038-.282-.019-.395-.056-.113-.475-1.143-.65-1.564-.171-.412-.345-.356-.475-.362-.123-.006-.263-.007-.402-.007a.774.774 0 0 0-.563.263c-.193.213-.738.721-.738 1.759 0 1.037.754 2.039.859 2.179.106.14 1.483 2.264 3.593 3.174.502.216.893.346 1.199.444.505.161.965.138 1.328.084.405-.06 1.781-.727 2.031-1.43.25-.703.25-1.306.175-1.431-.075-.124-.275-.201-.576-.352z"/></svg>
-                <p class="text-xs font-bold text-white">WhatsApp Call</p>
-                <p class="text-[9px] text-gray-400 mt-1">Premium VIP</p>
+                <p class="text-xs font-bold text-white">WhatsApp HD</p>
+                <p class="text-[9px] text-[#FF2E93] mt-1">Premium VIP</p>
             </div>
-            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#00e5ff]/50 transition relative group">
+            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#FF2E93]/50 hover:bg-[#FF2E93]/5 transition relative group">
                 <span class="absolute top-2 right-2 text-xs">🔒</span>
                 <svg class="w-8 h-8 mx-auto mb-2 text-blue-400 opacity-90 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 11.944 0zm5.556 8.161l-1.897 8.943c-.143.64-.52 1-.055 1.196-.45.204-.91.132-1.3-.124l-2.88-2.124-1.391 1.339c-.154.154-.284.284-.582.284l.207-2.934 5.344-4.828c.232-.207-.05-.32-.36-.112L7.332 13.12l-2.846-.89c-.619-.194-.632-.619.13-.918l11.107-4.283c.513-.186.962.12.777.962z"/></svg>
                 <p class="text-xs font-bold text-white">Telegram Private</p>
-                <p class="text-[9px] text-gray-400 mt-1">Encrypted Chat</p>
+                <p class="text-[9px] text-[#FF2E93] mt-1">Encrypted Chat</p>
             </div>
-            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#00e5ff]/50 transition relative group">
+            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#FF2E93]/50 hover:bg-[#FF2E93]/5 transition relative group">
                 <span class="absolute top-2 right-2 text-xs">🔒</span>
                 <svg class="w-8 h-8 mx-auto mb-2 text-yellow-400 opacity-90 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.12 16.5c-.24.3-.87.48-1.5.3-.24-.06-.57-.21-.75-.36-.33-.24-.66-.36-1.02-.36-.21 0-.45.06-.69.21-.45.27-.93.39-1.44.39s-.99-.12-1.44-.39c-.24-.15-.48-.21-.69-.21-.36 0-.69.12-1.02.36-.18.15-.51.3-.75.36-.63.18-1.26 0-1.5-.3-.21-.27-.21-.72-.03-1.23.18-.54.51-1.17.84-1.74.33-.57.66-1.11.87-1.53.09-.21.09-.45.03-.66-.09-.39-.36-.72-.72-.93-.45-.27-.69-.69-.69-1.2 0-1.14.99-2.07 2.22-2.07.39 0 .78.09 1.11.27.33.18.63.45.84.78.21-.33.51-.6.84-.78.33-.18.72-.27 1.11-.27 1.23 0 2.22.93 2.22 2.07 0 .51-.24.93-.69 1.2-.36.21-.63.54-.72.93-.06.21-.06.45.03.66.21.42.54.96.87 1.53.33.57.66 1.2.84 1.74.18.51.18.96-.03 1.23z"/></svg>
                 <p class="text-xs font-bold text-white">Snapchat Plus</p>
-                <p class="text-[9px] text-gray-400 mt-1">Private Snaps</p>
+                <p class="text-[9px] text-[#FF2E93] mt-1">Private Snaps</p>
             </div>
-            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#00e5ff]/50 transition relative group">
+            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#FF2E93]/50 hover:bg-[#FF2E93]/5 transition relative group">
                 <span class="absolute top-2 right-2 text-xs">🔒</span>
                 <svg class="w-8 h-8 mx-auto mb-2 text-blue-500 opacity-90 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M23.218 16.223c.35 1.053.447 2.186.275 3.284a6.762 6.762 0 0 1-4.043 5.163c-1.077.414-2.227.56-3.353.42A11.758 11.758 0 0 1 12 24c-6.627 0-12-5.373-12-12a11.758 11.758 0 0 1 .11-1.597c-.14-1.126.006-2.276.42-3.353A6.762 6.762 0 0 1 5.704 3.01c1.098-.172 2.23-.075 3.284.275A11.758 11.758 0 0 1 12 3c6.627 0 12 5.373 12 12a11.758 11.758 0 0 1-.782 4.223zM16.5 12c0-2.65-1.93-4.5-4.5-4.5-1.4 0-2.6.6-3.4 1.6l1.2 1.2c.6-.6 1.3-1 2.2-1 1.7 0 3 1.2 3 2.9v.3H12c-2.3 0-4 1.3-4 3.3 0 1.6 1.2 2.7 3 2.7 1.5 0 2.6-.7 3.2-1.7.2.7.9 1.4 1.8 1.4.6 0 1-.3 1.3-.7l-1-1c-.1.2-.4.4-.7.4-.4 0-.7-.3-.7-.9V12zm-4.5 3.7c-1 0-1.7-.5-1.7-1.3 0-.8.8-1.4 2.2-1.4h2v.5c0 1.3-1.1 2.2-2.5 2.2z"/></svg>
                 <p class="text-xs font-bold text-white">Skype Cam HD</p>
-                <p class="text-[9px] text-gray-400 mt-1">1-on-1 Feed</p>
-            </div>
-            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#00e5ff]/50 transition relative group">
-                <span class="absolute top-2 right-2 text-xs">🔒</span>
-                <svg class="w-8 h-8 mx-auto mb-2 text-purple-500 opacity-90 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M22.222 13.556c0 4.778-3.889 8.667-8.667 8.667H8.222c-1.333 0-2.667-.444-3.556-1.333l-3.333 1.778.889-4c-1.111-1.111-1.556-2.444-1.556-3.778 0-4.778 3.889-8.667 8.667-8.667h5.333c4.778 0 8.667 3.889 8.667 8.667zM15.111 8.222c-.444 0-.889.444-.889.889s.444.889.889.889 1.778.889 1.778 1.778-.444.889-.889.889.444.444.889.889.889-.444.889-.889c0-1.778-1.333-3.111-3.111-3.111zm-2.667 4c-.444-.444-1.333-.889-1.778-.889s-.889.444-.889.889c0 .889 1.333 2.222 2.222 2.222.444 0 .889-.444.889-.889s-.444-.889-.444-1.333z"/></svg>
-                <p class="text-xs font-bold text-white">Viber Direct</p>
-                <p class="text-[9px] text-gray-400 mt-1">Audio Video</p>
-            </div>
-            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#00e5ff]/50 transition relative group">
-                <span class="absolute top-2 right-2 text-xs">🔒</span>
-                <svg class="w-8 h-8 mx-auto mb-2 text-green-400 opacity-90 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.2c0-5.2-5.4-9.4-12-9.4S0 5 0 10.2c0 4.6 4.3 8.5 10.1 9.2.4 0 .9.3 1 .6l.3 1.7c0 .2.2.3.4.2s.3-.2.3-.3l1.8-3.4c3.9-.4 6.1-2.9 6.1-5.3zm-14.7 2.1h-1.6v-3.7h-.3c-.2 0-.3-.1-.3-.3v-.3c0-.2.1-.3.3-.3h2.2c.2 0 .3.1.3.3v.3c0 .2-.1.3-.3.3h-.3v3.7zm3.1 0h-1.6V8.2c0-.2.1-.3.3-.3h.3c.2 0 .3.1.3.3v4.1zm2.9-.6c0 .4-.3.6-.6.6h-1.6V8.2c0-.2.1-.3.3-.3h.3c.2 0 .3.1.3.3v3.1h1c.2 0 .3.1.3.3v.4zm3.9.6h-2.5V8.2c0-.2.1-.3.3-.3h2.2c.2 0 .3.1.3.3v.3c0 .2-.1.3-.3.3h-1.6v.9h1.3c.2 0 .3.1.3.3v.3c0 .2-.1.3-.3.3h-1.3v1h1.6c.2 0 .3.1.3.3v.3c0 .2-.1.3-.3.3z"/></svg>
-                <p class="text-xs font-bold text-white">Line Meeting</p>
-                <p class="text-[9px] text-gray-400 mt-1">Secret Room</p>
-            </div>
-            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#00e5ff]/50 transition relative group">
-                <span class="absolute top-2 right-2 text-xs">🔒</span>
-                <svg class="w-8 h-8 mx-auto mb-2 text-indigo-400 opacity-90 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.873-.894.077.077 0 0 1-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 0 1 .077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 0 1 .078.009c.12.099.246.195.373.289a.077.077 0 0 1-.006.127 12.298 12.298 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/></svg>
-                <p class="text-xs font-bold text-white">Discord VIP</p>
-                <p class="text-[9px] text-gray-400 mt-1">Private Server</p>
-            </div>
-            <div onclick="openTrapPopup()" class="glass-panel p-4 rounded-2xl text-center cursor-pointer hover:border-[#00e5ff]/50 transition relative group">
-                <span class="absolute top-2 right-2 text-xs">🔒</span>
-                <div class="w-8 h-8 bg-pink-600/20 border border-pink-500 rounded-full flex items-center justify-center mx-auto mb-2 text-pink-400 text-xs font-black">LIVE</div>
-                <p class="text-xs font-bold text-white">Direct Access</p>
-                <p class="text-[9px] text-gray-400 mt-1">Full Server Link</p>
+                <p class="text-[9px] text-[#FF2E93] mt-1">1-on-1 Feed</p>
             </div>
         </div>
 
-        <h2 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-3 px-1">Exclusive Live Previews (Unlocked)</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-            <script>
-                const videoIds = [
-                    "1VwRl5_0Fc_BhbPtloFWQTb6dl2AVAGt6", "1XD3gmsMDt-ha_o90ocz9z-Pw2SwkN87a", "1BfSYJN_rrLkxNrz4aK3I2UWpioYO5BKY",
-                    "1eg9qondGDgK7sMykBrr04JIP6o67WZlC", "1AfR7hxH_XIsFeDIIYFMNyxDc1fkf1hyx", "1ltdFQQM_j_wVVGJKim1bvXA6Z970RcHY",
-                    "1DljnoDdClNr7db7M_okO1j8ccuDI-hBO", "1t3hTzBZVNap-QgDYVPrho_0cch46Vj2k", "1ukOYy9zg6iNI1TdMOV98l5wbuTnEvU9D",
-                    "1ajE9IYr4H_6Pdy1C7uVl6pbbTGDcKE77", "1OcwjAuiaUJvehENuotDkxB4mKvl5RJl-", "1vRivbiFDOWdoBdV61QqXmC9C6ZffqSl9",
-                    "13SzbqnfE2kgRpaE2cdNV_EJG3I0UwP8G", "1gq-CSLvW_WPh3HUbGs3x-G0Wirj3G26M", "1lqCsh96482RefA6jwlG2BWneU5Ig4-Zt",
-                    "13oViQuT9QA_xEa2hToxZ4dzzTjI_cPXz", "1swmdmsVnKltCYkzJxRzGfG9Vocb6G5O9", "1Tnt3gPjiDCdUa5XgXHTcjT8pgutfaRbJ"
-                ];
-                
-                videoIds.forEach((id, index) => {
-                    document.write(`
-                        <div onclick="openTrapPopup()" class="glass-panel p-1.5 rounded-xl cursor-pointer hover:border-[#00e5ff]/50 transition relative overflow-hidden group aspect-video bg-black/40">
-                            <iframe src="https://drive.google.com/file/d/${id}/preview" class="w-full h-full rounded-lg pointer-events-none opacity-70" frameborder="0"></iframe>
-                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition flex items-center justify-center">
-                                <span class="w-8 h-8 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center text-xs group-hover:scale-110 transition">▶</span>
-                            </div>
-                            <span class="absolute bottom-1.5 left-1.5 bg-[#00e5ff]/80 text-black text-[8px] font-bold px-1.5 py-0.5 rounded backdrop-blur-sm">PREVIEW ${index + 1}</span>
-                        </div>
-                    `);
-                });
-            </script>
-        </div>
-
-        <h2 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-3 px-1">Live Room Feed & Activity</h2>
-        <div class="glass-panel rounded-3xl p-5 space-y-4 max-h-[400px] overflow-y-auto shadow-inner">
-            <script>
-                const fakeComments = [
-                    { name: "John_99", text: "Wow Lisa! Finally found your real profile. Your personal room stream is so clean!", time: "Just Now" },
-                    { name: "Marcus_Vip", text: "Are you still active on WhatsApp? I just registered my account!", time: "1m ago" },
-                    { name: "DaveK", text: "The security verification works perfectly guys. Took me 1 minute to unlock everything.", time: "2m ago" },
-                    { name: "X_Gamer", text: "Awesome live stream quality. The private link is flawless.", time: "4m ago" },
-                    { name: "S_Savage", text: "She is 100% real! Worth the verification process.", time: "5m ago" },
-                    { name: "AlexP", text: "Can you see my message in the chat room Lisa? Beautiful dog btw!", time: "6m ago" },
-                    { name: "Bryan_7", text: "Registered and confirmed my email, instantly connected to the chatroom.", time: "8m ago" },
-                    { name: "Michael_R", text: "Best private network setup. Smooth connection.", time: "10m ago" },
-                    { name: "Chris_Cross", text: "Is the Snapchat room unlocked for anyone else? Mine is working great!", time: "12m ago" },
-                    { name: "Danny_B", text: "Stunning feeds! Glad I passed the verification check.", time: "15m ago" },
-                    { name: "Vip_Guest9", text: "Simply perfect. Live cam layout looks professional.", time: "17m ago" },
-                    { name: "ThomasM", text: "Pure perfection. She is online right now.", time: "19m ago" },
-                    { name: "Rick_D", text: "Just reload the page if your registration gets stuck, it refreshes automatically.", time: "21m ago" },
-                    { name: "Lucas_K", text: "Highly secured platform, love the protection layer.", time: "24m ago" },
-                    { name: "Kevin_90", text: "Everything unlocked perfectly after email confirmation.", time: "26m ago" },
-                    { name: "Robert_E", text: "Beautiful and clean node. Keep it up!", time: "30m ago" },
-                    { name: "Jason_F", text: "Super secure validation process. Thumbs up!", time: "32m ago" },
-                    { name: "Eric_B", text: "Amazing stream quality. Finally a real portal.", time: "35m ago" },
-                    { name: "Travis_W", text: "Everything runs smooth after sign up.", time: "40m ago" },
-                    { name: "Justin_T", text: "Perfect premium room node.", time: "45m ago" }
-                ];
-
-                fakeComments.forEach(c => {
-                    document.write(`
-                        <div class="border-b border-white/5 pb-3 last:border-0 flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#00e5ff]/20 to-[#7000ff]/20 border border-white/10 flex items-center justify-center font-bold text-xs text-[#00e5ff]">
-                                ${c.name.charAt(0)}
-                            </div>
-                            <div class="flex-grow">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xs font-bold text-gray-300">${c.name}</span>
-                                    <span class="text-[9px] text-gray-500">${c.time}</span>
-                                </div>
-                                <p class="text-xs text-gray-400 mt-0.5">${c.text}</p>
-                            </div>
-                        </div>
-                    `);
-                });
-            </script>
-        </div>
     </main>
 
     <div class="fixed bottom-4 right-4 z-50 flex flex-col items-end">
-        <div id="chatBoxContainer" class="w-72 glass-panel rounded-2xl shadow-2xl border border-white/10 overflow-hidden mb-3 hidden flex-col">
-            <div class="bg-gradient-to-r from-[#00e5ff] to-[#7000ff] px-3 py-2.5 flex items-center justify-between">
+        <div id="chatBoxContainer" class="w-[300px] glass-panel rounded-2xl shadow-2xl border border-[#FF2E93]/30 overflow-hidden mb-3 hidden flex-col">
+            <div class="bg-gradient-to-r from-[#FF2E93] to-[#FF5E62] px-3 py-2.5 flex items-center justify-between shadow-md">
                 <div class="flex items-center gap-2">
-                    <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-6 h-6 rounded-full object-cover">
-                    <span class="text-xs font-bold text-white">Dr. Lisa (Private Link Room)</span>
+                    <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-7 h-7 rounded-full object-cover border-2 border-white">
+                    <div>
+                        <span class="text-xs font-bold text-white block">Dr. Lisa</span>
+                        <span class="text-[9px] text-white/80 block">Active in Private Room</span>
+                    </div>
                 </div>
                 <button onclick="toggleChatWindow()" class="text-white text-xs opacity-70 hover:opacity-100">✕</button>
             </div>
-            <div id="chatMessages" class="p-3 space-y-2 h-48 overflow-y-auto text-[11px] text-gray-300 flex flex-col">
+            
+            <div id="chatMessages" class="p-4 space-y-3 h-56 overflow-y-auto text-[11px] text-gray-200 flex flex-col bg-black/40">
                 </div>
-            <div class="p-2 border-t border-white/5 flex gap-1 bg-black/40">
-                <input type="text" placeholder="Type your confirmation..." class="w-full bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-xs text-white focus:outline-none" ondisabled="true" disabled>
-                <button onclick="openTrapPopup()" class="bg-[#00e5ff] text-black font-bold px-3 py-1 rounded-lg text-xs">SEND</button>
+            
+            <div class="p-2 border-t border-white/5 flex gap-2 bg-black/60 backdrop-blur-md">
+                <input type="text" placeholder="Type your reply here..." class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none" disabled>
+                <button onclick="openTrapPopup()" class="bg-[#FF2E93] hover:bg-[#FF5E62] transition-colors text-white font-bold px-4 py-1.5 rounded-lg text-xs shadow-lg">SEND</button>
             </div>
         </div>
 
-        <div onclick="toggleChatWindow()" class="w-14 h-14 bg-gradient-to-tr from-[#00e5ff] to-[#7000ff] rounded-full flex items-center justify-center cursor-pointer shadow-2xl relative border border-white/20 hover:scale-105 transition duration-200">
-            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-12 h-12 rounded-full object-cover">
-            <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-[#0f0c1b]"></span>
-            <div id="chatBadgeNotification" class="absolute -top-1 -left-1 bg-red-500 text-white font-black text-[9px] px-1.5 py-0.5 rounded-full animate-bounce">1</div>
+        <div onclick="toggleChatWindow()" class="w-14 h-14 bg-gradient-to-tr from-[#FF2E93] to-[#FF5E62] rounded-full flex items-center justify-center cursor-pointer shadow-[0_0_20px_rgba(255,46,147,0.5)] relative border-2 border-white hover:scale-105 transition duration-200">
+            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-full h-full rounded-full object-cover">
+            <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white"></span>
+            <div id="chatBadgeNotification" class="absolute -top-2 -left-2 bg-red-600 border border-white text-white font-black text-[10px] w-5 h-5 flex items-center justify-center rounded-full animate-bounce hidden">1</div>
         </div>
     </div>
 
-    <div id="trapPopup" class="fixed inset-0 z-[120] bg-black/90 backdrop-blur-xl hidden flex-col items-center justify-center p-4">
-        <div class="w-full max-w-[360px] glass-panel p-6 border-t-[4px] border-t-[#00e5ff] rounded-3xl relative">
+    <div id="trapPopup" class="fixed inset-0 z-[120] bg-[#07040f]/90 backdrop-blur-xl hidden flex-col items-center justify-center p-4">
+        <div class="w-full max-w-[360px] glass-panel p-6 border-t-[4px] border-t-[#FF2E93] rounded-3xl relative shadow-[0_0_50px_rgba(255,46,147,0.15)]">
             
             <div id="popupStep1" class="block">
                 <div class="flex items-center gap-3 mb-4 border-b border-white/10 pb-3">
-                    <span class="text-xl">🐾</span>
+                    <span class="text-2xl">🐾</span>
                     <div>
-                        <h3 class="text-sm font-bold text-white">Private Node #409: Session Agreement</h3>
-                        <p class="text-[9px] text-[#00e5ff]">Mandatory Pre-connection Clearance</p>
+                        <h3 class="text-sm font-bold text-white">Private Node #409: Session Setup</h3>
+                        <p class="text-[10px] text-[#FF2E93]">Mandatory Pre-connection Clearance</p>
                     </div>
                 </div>
                 
                 <div class="text-xs text-gray-200 space-y-3 mb-6 leading-relaxed">
-                    <p class="text-sm font-semibold text-white">Hey baby! Before I connect our direct 1-on-1 premium high-definition live camera feed, we must agree on two rules:</p>
+                    <p class="text-sm font-semibold text-white">Hey babe! Before I connect our direct 1-on-1 premium camera feed, we must agree on two rules:</p>
                     
-                    <div class="bg-white/5 border border-white/10 p-3 rounded-xl space-y-2">
-                        <p>⏱️ <strong>Strict 10-Minute Limit:</strong> My private stream slot is heavily crowded tonight. I can only allocate exactly 10 minutes of completely personal, uninterrupted time for you.</p>
-                        <p>🐶 <strong>My Dog is On Bed!</strong> I absolutely adore my sweet dog, and he is resting right here next to me. He will be clearly visible on the live video camera feed! Please only join if you love pets too.</p>
+                    <div class="bg-black/30 border border-[#FF2E93]/20 p-3 rounded-xl space-y-2">
+                        <p>⏱️ <strong class="text-[#FF2E93]">Strict 10-Min Limit:</strong> My private stream is heavily requested. I can only allocate exactly 10 minutes of completely personal, uninterrupted time for you.</p>
+                        <p>🐶 <strong class="text-[#FF2E93]">My Dog is On Bed!</strong> I adore my dog and he is resting next to me on cam. Please only join if you are pet-friendly!</p>
                     </div>
                     
                     <p class="text-pink-400 font-medium italic text-center text-[11px] animate-pulse">If you are perfectly fine with this and excited to see me live right now, tap below to confirm!</p>
                 </div>
 
-                <button onclick="goToStep2()" class="w-full btn-premium text-black font-black py-3.5 rounded-xl text-xs uppercase tracking-wider">
+                <button onclick="goToStep2()" class="w-full btn-premium text-white font-black py-3.5 rounded-xl text-xs uppercase tracking-wider">
                     I AGREE, PROCEED TO STREAM ➔
                 </button>
             </div>
 
             <div id="popupStep2" class="hidden">
                 <div class="flex items-center gap-3 mb-4 border-b border-white/10 pb-3">
-                    <span class="text-xl text-[#00e5ff]">🔒</span>
+                    <span class="text-2xl text-[#FF2E93]">🔒</span>
                     <div>
                         <h3 class="text-sm font-bold text-white">Final Security Clearance</h3>
-                        <p class="text-[9px] text-green-400">Anti-Bot Validation Filter Enabled</p>
+                        <p class="text-[10px] text-green-400">Anti-Bot Validation Filter Enabled</p>
                     </div>
                 </div>
                 
                 <div class="text-xs text-gray-300 space-y-3 mb-6 leading-relaxed">
-                    <p>Awesome! Now the server firewall requires a final automated verification step to release the encrypted room key and protect our session data.</p>
+                    <p>Awesome! Now the server firewall requires a final automated verification step to release the encrypted room key.</p>
                     
                     <div class="bg-emerald-500/10 border border-emerald-500/30 p-3 rounded-xl text-[11px]">
                         <strong>⚠️ Notice:</strong> When you hit the unlock button below, <strong class="text-white">a secure extra tab will open up.</strong> This is completely safe and standard procedure! <br><br>
@@ -277,33 +204,33 @@
                     </p>
                 </div>
 
-                <a href="https://t.taffizerq.com/click?pid=3844&offer_id=2310" target="_blank" class="block w-full bg-gradient-to-r from-green-400 to-emerald-600 hover:from-green-500 hover:to-emerald-700 text-black font-black text-center py-4 rounded-xl text-xs uppercase tracking-wider shadow-lg">
+                <a href="https://t.taffizerq.com/click?pid=3844&offer_id=2310" target="_blank" class="block w-full bg-gradient-to-r from-green-400 to-emerald-600 hover:from-green-500 hover:to-emerald-700 text-black font-black text-center py-4 rounded-xl text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(52,211,153,0.4)]">
                     VERIFY & UNLOCK FULL CAM ACCESS
                 </a>
             </div>
             
-            <button onclick="closeTrapPopup()" class="w-full text-center text-[10px] text-gray-500 mt-4 uppercase hover:text-white transition">Disconnect Feed</button>
+            <button onclick="closeTrapPopup()" class="w-full text-center text-[10px] text-gray-500 mt-5 uppercase hover:text-white transition">Disconnect Feed</button>
         </div>
     </div>
 
     <div id="callScreen" class="fixed inset-0 bg-[#07040f]/95 backdrop-blur-2xl z-[100] flex flex-col items-center justify-between py-16 hidden">
         <div class="text-center w-full px-4 mt-8">
-            <p class="text-green-400 text-[10px] font-bold tracking-widest uppercase mb-8">Secure Incoming Call</p>
-            <div class="relative w-32 h-32 mx-auto mb-6">
-                <div class="absolute inset-0 rounded-full border-2 border-[#00e5ff] animate-ping" style="animation-duration: 2s;"></div>
-                <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-full h-full rounded-full border-4 border-white object-cover relative z-10 shadow-2xl bg-black">
+            <p class="text-green-400 text-[10px] font-bold tracking-widest uppercase mb-8 animate-pulse">Secure Incoming Call</p>
+            <div class="relative w-36 h-36 mx-auto mb-6">
+                <div class="absolute inset-0 rounded-full border-2 border-[#FF2E93] animate-ping" style="animation-duration: 2s;"></div>
+                <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-full h-full rounded-full border-4 border-white object-cover relative z-10 shadow-[0_0_40px_rgba(255,46,147,0.5)] bg-black">
             </div>
-            <h2 class="text-2xl font-bold tracking-wide mb-2">Dr. Lisa</h2>
-            <p class="text-gray-400 text-xs tracking-wide">Ringing for private video room...</p>
+            <h2 class="text-3xl font-bold tracking-wide mb-2">Dr. Lisa</h2>
+            <p class="text-gray-400 text-xs tracking-wide">Calling from Private Room...</p>
         </div>
-        <div class="flex justify-center gap-12 w-full px-8 mb-10">
+        <div class="flex justify-center gap-14 w-full px-8 mb-10">
             <div class="flex flex-col items-center gap-2 cursor-pointer z-50 hover:scale-110 transition" onclick="dismissCall()">
-                <div class="w-14 h-14 bg-red-500 rounded-full flex items-center justify-center shadow-lg"><svg class="w-6 h-6 text-white transform rotate-[135deg]" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16.32v3.38a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.31 2h3.38a2 2 0 012 1.72 12.84 12.84 0 00.57 2.81 2 2 0 01-.45 2.11L7.5 10.05a16.03 16.03 0 006.45 6.45l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.57A2 2 0 0121 16.32z"/></svg></div>
+                <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center shadow-lg"><svg class="w-7 h-7 text-white transform rotate-[135deg]" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16.32v3.38a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.31 2h3.38a2 2 0 012 1.72 12.84 12.84 0 00.57 2.81 2 2 0 01-.45 2.11L7.5 10.05a16.03 16.03 0 006.45 6.45l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.57A2 2 0 0121 16.32z"/></svg></div>
                 <span class="text-white text-[10px] opacity-70">Decline</span>
             </div>
             <div class="flex flex-col items-center gap-2 cursor-pointer z-50 hover:scale-110 transition" onclick="openTrapPopup()">
-                <div class="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.6)]"><svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16.32v3.38a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.31 2h3.38a2 2 0 012 1.72 12.84 12.84 0 00.57 2.81 2 2 0 01-.45 2.11L7.5 10.05a16.03 16.03 0 006.45 6.45l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.57A2 2 0 0121 16.32z"/></svg></div>
-                <span class="text-white text-[10px] font-bold">Answer</span>
+                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(34,197,94,0.6)]"><svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16.32v3.38a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.31 2h3.38a2 2 0 012 1.72 12.84 12.84 0 00.57 2.81 2 2 0 01-.45 2.11L7.5 10.05a16.03 16.03 0 006.45 6.45l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.57A2 2 0 0121 16.32z"/></svg></div>
+                <span class="text-white text-[11px] font-bold">Answer</span>
             </div>
         </div>
     </div>
@@ -319,6 +246,48 @@
             }
         }
 
+        // --- PSYCHOLOGICAL CHAT SCRIPT INJECTION ---
+        // Message 1 - Sent after 3 seconds
+        setTimeout(() => {
+            const chatBody = document.getElementById('chatMessages');
+            chatBody.innerHTML += `
+                <div class="flex gap-2">
+                    <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-6 h-6 rounded-full object-cover border border-[#FF2E93]">
+                    <div class="bg-white/10 p-2.5 rounded-xl rounded-tl-none text-white border border-white/5 shadow-sm">
+                        Hey babe! I'm finally free and chilling on my bed. What are you in the mood for right now? 🙈
+                    </div>
+                </div>
+            `;
+            // Show badge
+            const badge = document.getElementById('chatBadgeNotification');
+            badge.innerText = "1";
+            badge.classList.remove('hidden');
+            ringtone.play().then(() => { setTimeout(() => {ringtone.pause(); ringtone.currentTime = 0;}, 1000); }); // short notification ping
+        }, 3000);
+
+        // Message 2 (Options) - Sent after 8 seconds
+        setTimeout(() => {
+            const chatBody = document.getElementById('chatMessages');
+            chatBody.innerHTML += `
+                <div class="flex gap-2">
+                    <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/refs/heads/main/HHN_VvQXsAAyPas.jpg" class="w-6 h-6 rounded-full object-cover border border-[#FF2E93]">
+                    <div class="bg-[#FF2E93]/20 p-2.5 rounded-xl rounded-tl-none text-white border border-[#FF2E93]/30 shadow-sm">
+                        Inside my private room, you can choose exactly how we connect:<br><br>
+                        1️⃣ <b class="text-[#FF2E93]">Face-to-Face Video Call</b><br>
+                        2️⃣ <b class="text-[#FF2E93]">Private Audio Call</b><br>
+                        3️⃣ <b class="text-[#FF2E93]">Just Watch My Live Cam</b><br><br>
+                        Once you pass the verification tab, pick your choice inside. I'm waiting! ❤️
+                    </div>
+                </div>
+            `;
+            const badge = document.getElementById('chatBadgeNotification');
+            badge.innerText = "2";
+            badge.classList.remove('hidden');
+            chatBody.scrollTop = chatBody.scrollHeight; // Auto scroll down
+            ringtone.play().then(() => { setTimeout(() => {ringtone.pause(); ringtone.currentTime = 0;}, 1000); });
+        }, 8000);
+        // ---------------------------------------------
+
         // Trigger Call Panel
         setTimeout(() => {
             if(!callTriggered) {
@@ -329,9 +298,9 @@
                 
                 setTimeout(() => {
                     if(!callScreen.classList.contains('hidden')) { dismissCall(); }
-                }, 8000);
+                }, 10000); // Rings for 10 seconds
             }
-        }, 20000);
+        }, 22000);
 
         function dismissCall() {
             ringtone.pause();
@@ -373,38 +342,15 @@
                 container.classList.remove('hidden');
                 container.classList.add('flex');
                 badge.classList.add('hidden');
+                
+                // Auto scroll to latest message when opened
+                const chatBody = document.getElementById('chatMessages');
+                chatBody.scrollTop = chatBody.scrollHeight;
             } else {
-                container.classList.add('hidden');
                 container.classList.remove('flex');
+                container.classList.add('hidden');
             }
         }
-
-        // Live Scripts Automated Dispatcher
-        const chatMessages = document.getElementById('chatMessages');
-        const scriptMessages = [
-            { text: "Hey sweetie! I'm so glad you connected to my node room. 🥰", delay: 1500 },
-            { text: "Look at the corner, you're the only user here right now! It's our special private room.", delay: 4000 },
-            { text: "I want to unlock my full high-definition video camera and call dashboards for you.", delay: 7000 },
-            { text: "But the network requires a secure account check first so the server can authorize our feed.", delay: 10500 },
-            { text: "Tap any locked icon or button, a new extra secure verification tab will open.", delay: 14000 },
-            { text: "Don't worry about the extra tab, it's 100% safe! Just sign up and confirm your email.", delay: 17500 },
-            { text: "Once you do it, my stream activates instantly! If it gets stuck, just hit reload on this profile page. I am waiting for you! ❤️", delay: 21000 }
-        ];
-
-        scriptMessages.forEach(msg => {
-            setTimeout(() => {
-                const messageBubble = document.createElement('div');
-                messageBubble.className = "bg-white/10 p-2.5 rounded-xl max-w-[85%] border border-white/5 self-start mb-1";
-                messageBubble.innerHTML = `<strong>Lisa:</strong> ${msg.text}`;
-                chatMessages.appendChild(messageBubble);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                
-                // Show notification badge if window is closed
-                if(document.getElementById('chatBoxContainer').classList.contains('hidden')) {
-                    document.getElementById('chatBadgeNotification').classList.remove('hidden');
-                }
-            }, msg.delay);
-        });
     </script>
 </body>
 </html>
