@@ -3,1281 +3,650 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Live Chat & Video Room</title>
+    <title>Free Public Live Room</title>
     <style>
-        :root {{
-            --primary: #00f0ff;
-            --primary-glow: rgba(0, 240, 255, 0.4);
-            --accent: #ff007f;
-            --bg-dark: #0a0a16;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --text-light: #ffffff;
-            --text-muted: #8fa0b5;
-        }}
+        :root {
+            --primary: #0084ff;
+            --primary-glow: rgba(0, 132, 255, 0.4);
+            --bg-dark: #f0f2f5;
+            --bg-card: #ffffff;
+            --border: #e4e6eb;
+            --text-main: #050505;
+            --text-muted: #65676b;
+            --call-green: #31a24c;
+            --call-red: #e41e3f;
+        }
 
-        * {{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             -webkit-tap-highlight-color: transparent;
-        }}
+        }
 
-        body {{
-            background: linear-gradient(180deg, #090914 0%, #111126 100%);
-            color: var(--text-light);
+        body {
+            background: var(--bg-dark);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 15px;
+            justify-content: center;
+            align-items: flex-start;
             overflow-x: hidden;
-        }}
+            padding: 10px;
+        }
 
-        /* Main Container */
-        .container {{
-            max-width: 500px;
+        /* Clean Free Modern Social UI */
+        .dashboard-wrapper {
             width: 100%;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 20px;
-            margin-top: 10px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }}
-
-        /* Clean Header - Completely Free Vibe */
-        .header {{
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }}
-
-        .profile-pic {{
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
-            object-fit: cover;
-        }}
-
-        .header-info h1 {{
-            font-size: 1.25rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }}
-
-        .free-badge {{
-            background: rgba(0, 240, 255, 0.15);
-            color: var(--primary);
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 1px solid rgba(0, 240, 255, 0.3);
-        }}
-
-        .status {{
-            color: #34c759;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 3px;
-        }}
-
-        .status-dot {{
-            width: 8px;
-            height: 8px;
-            background: #34c759;
-            border-radius: 50%;
-            animation: pulse-green 1.5s infinite;
-        }}
-
-        /* Stream/Video Box */
-        .media-area {{
-            width: 100%;
-            height: 280px;
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('{USER_PHOTO_URL}') center/cover;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-            overflow: hidden;
-        }}
-
-        .live-tag {{
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: #ff3b30;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 10px;
-            letter-spacing: 0.5px;
-        }}
-
-        .counter-tag {{
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-size: 11px;
-        }}
-
-        .play-center-btn {{
-            width: 55px;
-            height: 55px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.2s;
-        }}
-
-        /* Realistic Control Bar */
-        .control-grid {{
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }}
-
-        .action-card {{
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 12px 5px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }}
-
-        .action-card:hover {{
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-        }}
-
-        .action-card.call-btn-highlight {{
-            background: rgba(52, 199, 89, 0.1);
-            border-color: rgba(52, 199, 89, 0.4);
-        }}
-
-        .action-card.call-btn-highlight:hover {{
-            background: rgba(52, 199, 89, 0.2);
-        }}
-
-        .control-icon {{
-            font-size: 20px;
-            margin-bottom: 4px;
-        }}
-
-        .action-card h3 {{
-            font-size: 12px;
-            font-weight: 600;
-        }}
-
-        .action-card p {{
-            font-size: 10px;
-            color: var(--text-muted);
-            margin-top: 1px;
-        }}
-
-        /* Chat Layout */
-        .chat-section {{
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 16px;
-            padding: 12px;
-        }}
-
-        .chat-meta {{
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            color: var(--text-muted);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 5px;
-        }}
-
-        .chat-stream {{
-            height: 160px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }}
-
-        .chat-stream::-webkit-scrollbar {{
-            display: none;
-        }}
-
-        .chat-bubble {{
-            background: rgba(255, 255, 255, 0.04);
-            padding: 6px 12px;
+            max-width: 450px;
+            background: var(--bg-card);
             border-radius: 12px;
-            font-size: 12px;
-            max-width: 90%;
-            animation: popIn 0.3s ease forwards;
-        }}
-
-        .chat-user {{
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1px;
-        }}
-
-        .chat-text {{
-            color: #e2e8f0;
-        }}
-
-        /* Interactive Inputs */
-        .chat-input-area {{
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             display: flex;
-            gap: 8px;
-        }}
-
-        .interactive-input {{
-            flex-grow: 1;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 10px 15px;
-            color: white;
-            font-size: 12px;
-            outline: none;
-        }}
-
-        .send-action-btn {{
-            background: var(--primary);
-            border: none;
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            color: #000;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }}
-
-        /* MASTER LEVEL PSYCHOLOGICAL REDIRECT POPUP */
-        .conversion-modal-overlay {{
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 5, 10, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 20000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-
-        .conversion-modal-overlay.is-active {{
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .conversion-box {{
-            background: #121225;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 30px 20px;
-            width: 90%;
-            max-width: 360px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }}
-
-        .conversion-modal-overlay.is-active .conversion-box {{
-            transform: scale(1);
-        }
-
-        .lock-badge {{
-            font-size: 36px;
-            margin-bottom: 12px;
-        }}
-
-        .conversion-box h2 {{
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #fff;
-        }}
-
-        .conversion-box p {{
-            font-size: 13px;
-            color: #a0aec0;
-            line-height: 1.5;
-            margin-bottom: 22px;
-        }}
-
-        .master-cta-anchor {{
-            display: block;
-            background: #34c759;
-            color: white;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 15px;
-            box-shadow: 0 4px 15px rgba(52, 199, 89, 0.3);
-            transition: background 0.2s;
-        }}
-
-        .master-cta-anchor:hover {{
-            background: #2ebd4e;
-        }}
-
-        .dismiss-link {{
-            display: inline-block;
-            margin-top: 15px;
-            font-size: 11px;
-            color: var(--text-muted);
-            cursor: pointer;
-        }}
-
-        /* REALISTIC DIALOG/INCOMING CALL BOX (iOS / Android Formatted Size) */
-        .fullscreen-call-overlay {{
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0b0b16;
-            z-index: 10000;
-            display: none;
             flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Social Style Header */
+        .app-header {
+            padding: 12px 15px;
+            display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 70px 30px 60px 30px;
-            box-sizing: border-box;
-        }}
-
-        .caller-avatar-huge {{
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid rgba(255,255,255,0.2);
-        }}
-
-        .caller-name {{
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: #fff;
-        }}
-
-        .call-status-text {{
-            font-size: 14px;
-            color: #34c759;
-            font-weight: 500;
-        }}
-
-        /* REAL-SIZED CALL BUTTONS (Fixed huge button issue) */
-        .call-controls-row {{
-            display: flex;
-            gap: 60px;
-            margin-bottom: 20px;
-        }}
-
-        .circle-call-btn {{
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: none;
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.1s;
-        }}
-
-        .circle-call-btn:active {{
-            transform: scale(0.9);
-        }}
-
-        .btn-reject-call {{
-            background: #ff3b30;
-        }}
-
-        .btn-accept-call {{
-            background: #34c759;
-            position: relative;
-        }}
-
-        /* Continuous subtle phone ring animation */
-        .btn-accept-call::after {{
-            content: '';
-            position: absolute;
-            width: 100%; height: 100%;
-            border-radius: 50%;
-            border: 2px solid #34c759;
-            left: 0; top: 0;
-            animation: button-pulse 1.5s infinite;
-            box-sizing: border-box;
-        }}
-
-        /* Keyframes */
-        @keyframes pulse-green {{ 0% {{ box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.5); }} 70% {{ box-shadow: 0 0 0 6px rgba(52, 199, 89, 0); }} 100% {{ box-shadow: 0 0 0 0 rgba(52, 199, 89, 0); }} }}
-        @keyframes button-pulse {{ 0% {{ transform: scale(1); opacity: 1; }} 100% {{ transform: scale(1.4); opacity: 0; }} }}
-        @keyframes popIn {{ from {{ opacity: 0; transform: scale(0.95); }} to {{ opacity: 1; transform: scale(1); }} }}
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div class="header">
-            <img src="{USER_PHOTO_URL}" alt="User Frame" class="profile-pic">
-            <div class="header-info">
-                <h1>Free Chat & Video <span class="free-badge">Free Access</span></h1>
-                <div class="status"><div class="status-dot"></div>Live Connection Online</div>
-            </div>
-        </div>
-
-        <div class="media-area" onclick="triggerGatedModal('Free Room Verification', 'To view the 1080p live stream grid, please finalize your free guest profile setup.')">
-            <div class="live-tag">LIVE</div>
-            <div class="counter-tag">👁 1,842 watching</div>
-            <div class="play-center-btn">▶</div>
-        </div>
-
-        <div class="control-grid">
-            <div class="action-card call-btn-highlight" onclick="triggerGatedModal('Connect Live Video Call', 'I am currently online and ready! To launch our 1-on-1 free chat session, complete your free signup profile to activate the audio/video stream tunnel instantly.')">
-                <div class="control-icon">📞</div>
-                <h3>Start Call</h3>
-                <p style="color: #34c759;">Free Room</p>
-            </div>
-            <div class="action-card" onclick="triggerGatedModal('Send Free Message', 'Guest registration is required to join the group or send attachments.')">
-                <div class="control-icon">💬</div>
-                <h3>Message</h3>
-                <p>Text DM</p>
-            </div>
-            <div class="action-card" onclick="triggerGatedModal('Unlock Free Vault', 'Create a free user account to see public photos and shared links.')">
-                <div class="control-icon">🔒</div>
-                <h3>Shared Media</h3>
-                <p>Public Content</p>
-            </div>
-        </div>
-
-        <div class="chat-section">
-            <div class="chat-meta">
-                <span>💬 Public Room Streaming</span>
-                <span>Active</span>
-            </div>
-            <div class="chat-stream" id="liveChatFlow"></div>
-            <div class="chat-input-area">
-                <input type="text" class="interactive-input" placeholder="Type a message..." onclick="triggerGatedModal('Join Free Chat', 'Create a free account to participate in the conversation.')">
-                <button class="send-action-btn" onclick="triggerGatedModal('Join Free Chat', 'Create a free account to participate in the conversation.')">✓</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="fullscreen-call-overlay" id="fullScreenCallBox">
-        <div></div>
-        <div style="text-align: center;">
-            <img src="{USER_PHOTO_URL}" alt="User Call" class="caller-avatar-huge" style="margin-bottom: 20px;">
-            <div class="caller-name">Live Audio/Video Request</div>
-            <div class="call-status-text">Incoming Free Call...</div>
-        </div>
-        <div>
-            <div class="call-controls-row">
-                <button class="circle-call-btn btn-reject-call" onclick="triggerGatedModalFromCall()">✖</button>
-                <button class="circle-call-btn btn-accept-call" onclick="triggerGatedModalFromCall()">📞</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="conversion-modal-overlay" id="conversionLocker">
-        <div class="conversion-box">
-            <div class="lock-badge">🛡️</div>
-            <h2 id="modalHeadline">Free Account Verification</h2>
-            <p id="modalDescription">To block automatic spam bots and keep our community 100% safe, please complete a quick, free identity check. It takes less than 60 seconds to create your lifetime free account, and then our live connection will open automatically!</p>
-            
-            <a href="{CPA_OFFER_LINK}" class="master-cta-anchor" target="_self">Verify Free Account Now</a>
-            <div class="dismiss-link" onclick="closeGatedModal()">Cancel Connection</div>
-        </div>
-    </div>
-
-    <script>
-        const lockerOverlay = document.getElementById('conversionLocker');
-        const modalHeadline = document.getElementById('modalHeadline');
-        const modalDescription = document.getElementById('modalDescription');
-        const chatStreamBox = document.getElementById('liveChatFlow');
-        const callOverlay = document.getElementById('fullScreenCallBox');
-
-        const commentPool = [
-            { name: "John_92", text: "Just completed the free verification, it actually works perfectly! 😍" },
-            { name: "AlexStream", text: "Are you online right now? The audio is crystal clear." },
-            { name: "Mila_K", text: "Wow, signup is 100% free. Just joined the room guys! 🔥" },
-            { name: "Guest_3910", text: "Hello from California! Love the free live setup." },
-            { name: "Chris_V", text: "Verified my profile in 30 seconds. So easy." }
-        ];
-
-        let index = 0;
-        function runChat() {
-            if (index >= commentPool.length) index = 0;
-            const item = commentPool[index];
-            const div = document.createElement('div');
-            div.className = 'chat-bubble';
-            div.innerHTML = `<div class="chat-user">👤 ${item.name}</div><div class="chat-text">${item.text}</div>`;
-            chatStreamBox.appendChild(div);
-            chatStreamBox.scrollTop = chatStreamBox.scrollHeight;
-            index++;
-            setTimeout(runChat, Math.floor(Math.random() * 2000) + 2000);
-        }
-        setTimeout(runChat, 1000);
-
-        function triggerGatedModal(title, desc) {
-            modalHeadline.innerText = title;
-            modalDescription.innerText = desc;
-            lockerOverlay.classList.add('is-active');
+            border-bottom: 1px solid var(--border);
+            background: #fff;
         }
 
-        function triggerGatedModalFromCall() {
-            // Hide call screen first, then overlay the hyper-converting signup popup
-            callOverlay.style.display = 'none';
-            triggerGatedModal('Connection Pending! 🔒', 'I want to talk to you! However, to secure our free 1-on-1 chat session and block spam bots, you must quickly verify your profile. It is 100% free and takes less than a minute. Once verified, the system will instantly link our private call. Click below to register and join me now!');
-        }
-
-        function closeGatedModal() {
-            lockerOverlay.classList.remove('is-active');
-        }
-
-        // PERFECTLY ADJUSTED 10-12 SECOND NATURAL DELAY FOR INCOMING CALL
-        setTimeout(() => {
-            callOverlay.style.display = 'flex';
-        }, 11000);
-    </script>
-</body>
-</html>
-"""
-
-with open("free_gated_meet.html", "w", encoding="utf-8") as file:
-    file.write(html_content)
-
-print("Master design written successfully to 'free_gated_meet.html'")
-
-Code output
-
-Traceback (most recent call last):
-  File "<xbox-string>", line 702
-    html_content = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Premium Access Dashboard</title>
-    <style>
-        :root {{
-            --primary: #ff007f;
-            --primary-glow: rgba(255, 0, 127, 0.6);
-            --secondary: #7000ff;
-            --secondary-glow: rgba(112, 0, 255, 0.6);
-            --bg-dark: #0f0c29;
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --text-light: #ffffff;
-            --text-muted: #b3b3b3;
-        }}
-
-        * {{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }}
-
-        body {{
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: var(--text-light);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            overflow-x: hidden;
-        }}
-
-        /* Ultimate Master Dashboard Container */
-        .container {{
-            max-width: 800px;
-            width: 100%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 25px;
-            margin-top: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        /* Premium Header */
-        .header {{
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .profile-pic {{
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 3px solid var(--primary);
-            object-fit: cover;
-            box-shadow: 0 0 15px var(--primary-glow);
-        }
-
-        .header-info h1 {{
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+        .profile-section {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .verified-badge {{
-            background: linear-gradient(135deg, var(--secondary), #ff00aa);
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 10px var(--secondary-glow);
-        }
-
-        .status {{
-            color: #00ff88;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 5px;
-        }
-
-        .status-dot {{
-            width: 10px;
-            height: 10px;
-            background: #00ff88;
-            border-radius: 50%;
-            border: 2px solid #000;
-            animation: pulse-green 1.5s infinite;
-        }
-
-        /* Video / Streaming Area */
-        .media-area {{
-            width: 100%;
-            height: 350px;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('{USER_PHOTO_URL}') center/cover;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .avatar-container {
             position: relative;
-            margin-bottom: 25px;
-            border: 1px solid var(--glass-border);
-            cursor: pointer;
-            overflow: hidden;
+            width: 40px;
+            height: 40px;
         }
 
-        .media-area::before {{
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 20%, rgba(0,0,0,0.7) 100%);
-            pointer-events: none;
-        }
-
-        .live-tag {{
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: linear-gradient(90deg, #ff0055, #ff00aa);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 11px;
-            letter-spacing: 1px;
-            box-shadow: 0 0 10px var(--primary-glow);
-            animation: blink 1.2s infinite;
-            z-index: 2;
-        }
-
-        .counter-tag {{
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
             border: 1px solid var(--border);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            z-index: 2;
-        }}
+        }
 
-        .play-center-btn {{
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, var(--primary), #ff00aa);
+        .online-dot {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #31a24c;
             border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        .profile-info h2 {
+            font-size: 15px;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 0 25px var(--primary-glow);
-            animation: pulse-glow 2s infinite;
-            z-index: 2;
+            gap: 5px;
+            color: #050505;
         }
 
-        /* Call & Action Dashboard Grid */
-        .dashboard-title {{
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        .verified-icon {
+            color: var(--primary);
+            font-size: 12px;
         }
 
-        .action-grid {{
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 15px;
-            background: rgba(0,0,0,0.4);
+        .profile-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .live-viewers-header {
+            font-size: 13px;
+            font-weight: 600;
+            color: #e41e3f;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Video Area */
+        .video-canvas {
+            width: 100%;
+            height: 320px;
+            background: url('https://github.com/sdhujtrgfkitrye4w63456754-source/photo/blob/423c45f1f7ffc39b305aef4a2a4d2516e13a6688/GsKNHUXXsAA_z4C.jpg?raw=true') center/cover no-repeat;
+            position: relative;
+            cursor: pointer;
             border-bottom: 1px solid var(--border);
         }
 
-        .action-card {{
-            background: var(--glass);
-            border: 1px solid var(--border);
+        .live-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #e41e3f;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .counter-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 4px 10px;
             border-radius: 12px;
-            padding: 12px 5px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .play-center-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            animation: pulse-light 2s infinite;
+        }
+
+        /* Control Action Bar */
+        .control-row {
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--border);
+            background: #fff;
+        }
+
+        .control-btn {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 6px;
-        }
-
-        .action-card:hover {{
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.2);
-        }
-
-        .action-card.call-active {{
-            border-color: #00ff66;
-            background: rgba(0, 255, 102, 0.05);
-        }
-        .action-card.call-active:hover {{
-            box-shadow: 0 5px 15px rgba(0, 255, 102, 0.3);
-        }
-
-        .action-icon {{
-            font-size: 22px;
-            margin-bottom: 5px;
-            filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
-        }
-
-        .action-card h4 {{
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        .action-card p {{
-            font-size: 10px;
-            color: var(--text-muted);
-        }
-
-        /* Live Chat Stream Section */
-        .chat-section {{
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 15px;
-            overflow: hidden;
-            background: linear-gradient(180deg, rgba(6,6,12,0) 0%, rgba(15,10,30,0.3) 100%);
-        }
-
-        .chat-meta {{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 12px;
-            color: var(--text-muted);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 5px;
-        }
-
-        .chat-stream {{
-            flex-grow: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding-right: 2px;
-        }
-
-        /* Hide Scrollbar */
-        .chat-stream::-webkit-scrollbar {{
-            display: none;
-        }
-
-        .chat-bubble {{
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 8px 14px;
-            border-radius: 16px;
-            border-top-left-radius: 4px;
-            width: fit-content;
-            max-width: 85%;
-            animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            opacity: 0;
-            transform: scale(0.9) translateY(10px);
-        }
-
-        .chat-user {{
-            font-weight: bold;
-            font-size: 12px;
-            color: var(--secondary);
-            margin-bottom: 2px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .chat-text {{
-            font-size: 13px;
-            color: #e0e0f0;
-            line-height: 1.4;
-        }
-
-        /* Input Form Interaction */
-        .chat-input-area {{
-            display: flex;
-            gap: 10px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border);
-        }
-
-        .interactive-input {{
-            flex-grow: 1;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--border);
-            border-radius: 25px;
-            padding: 12px 18px;
-            color: white;
-            font-size: 13px;
-            outline: none;
-            transition: all 0.2s;
-        }
-
-        .interactive-input:focus {{
-            border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
-        }
-
-        .send-action-btn {{
-            background: linear-gradient(135deg, var(--primary), #ff00aa);
+            background: none;
             border: none;
-            border-radius: 50%;
-            width: 42px;
-            height: 42px;
-            color: white;
             cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .control-btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f0f2f5;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 15px var(--primary-glow);
-            transition: transform 0.2s;
+            font-size: 18px;
+            color: var(--text-main);
+            transition: 0.2s;
         }
 
-        /* GATED MODAL SYSTEM (CONVERSION ENGINE) */
-        .conversion-modal-overlay {{
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 20000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-
-        .conversion-modal-overlay.is-active {{
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .conversion-box {{
-            background: linear-gradient(145deg, #1a1a2e, #100d23);
-            border: 2px solid var(--primary);
-            border-radius: 24px;
-            padding: 35px 25px;
-            width: 90%;
-            max-width: 380px;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(255, 0, 127, 0.4);
-            transform: scale(0.85);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .conversion-modal-overlay.is-active .conversion-box {{
-            transform: scale(1);
-        }
-
-        .lock-icon-glow {{
-            font-size: 45px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px var(--primary));
-        }
-
-        .conversion-box h2 {{
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
+        .control-btn.active .control-btn-icon {
+            background: #e7f3ff;
             color: var(--primary);
         }
 
-        .conversion-box p {{
-            font-size: 14px;
-            color: #b0afc2;
-            line-height: 1.5;
-            margin-bottom: 25px;
-        }
-
-        /* CTA to Offer - same tab */
-        .master-cta-anchor {{
-            display: block;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            text-decoration: none;
-            padding: 14px 20px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 8px 20px rgba(255, 0, 127, 0.4);
-            transition: all 0.2s;
-        }
-
-        .dismiss-link {{
-            display: inline-block;
-            margin-top: 18px;
+        .control-btn span {
             font-size: 12px;
-            color: rgba(255,255,255,0.3);
-            cursor: pointer;
-            transition: color 0.2s;
+            font-weight: 500;
         }
 
-        /* FULL-SCREEN INCOMING CALL SIMULATION */
-        .fullscreen-call-overlay {{
+        /* Chat Section */
+        .chat-container {
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+
+        .chat-stream {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-stream::-webkit-scrollbar { display: none; }
+
+        .chat-row {
+            display: flex;
+            gap: 8px;
+            animation: slideUp 0.3s ease;
+        }
+
+        .chat-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .chat-bubble {
+            background: #f0f2f5;
+            padding: 8px 12px;
+            border-radius: 18px;
+            max-width: 85%;
+        }
+
+        .chat-user {
+            font-weight: 600;
+            font-size: 12px;
+            color: #050505;
+            margin-bottom: 2px;
+        }
+
+        .chat-text {
+            font-size: 13px;
+            color: #050505;
+            line-height: 1.4;
+        }
+
+        .chat-input-wrapper {
+            padding: 10px 15px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+        }
+
+        .interactive-input {
+            flex-grow: 1;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* ------------------------------------------- */
+        /* REALISTIC SMARTPHONE INCOMING CALL SCREEN   */
+        /* ------------------------------------------- */
+        .fullscreen-call-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, #1a0b2e 0%, #05020a 100%);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 15, 25, 0.98);
+            backdrop-filter: blur(15px);
             z-index: 10000;
             display: none; /* Initially Hidden */
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 60px 30px;
+            padding: 60px 20px 80px 20px;
             box-sizing: border-box;
-            animation: fadeIn 0.5s ease;
+            color: white;
+            animation: fadeIn 0.4s ease;
         }
 
-        .caller-name {{
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 5px;
+        .call-top-text {
+            text-align: center;
         }
 
-        .call-status-text {{
-            font-size: 15px;
-            color: #00ffaa;
-            font-weight: 500;
-            animation: pulse-text 1.2s infinite;
+        .call-title {
+            font-size: 14px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
-        .caller-avatar-huge {{
-            width: 150px;
-            height: 150px;
+        .caller-avatar {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            border: 4px solid var(--primary);
             object-fit: cover;
-            box-shadow: 0 0 40px var(--primary-glow);
-            animation: deep-pulse 1.8s infinite;
+            margin-bottom: 15px;
+            border: 2px solid rgba(255,255,255,0.1);
         }
 
-        .call-controls-row {{
+        .caller-name-big {
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .call-status {
+            font-size: 16px;
+            color: #ddd;
+        }
+
+        /* Normal Sized Real Buttons */
+        .call-buttons-container {
             display: flex;
-            gap: 50px;
-            margin-bottom: 30px;
+            width: 100%;
+            max-width: 280px;
+            justify-content: space-between;
         }
 
-        .circle-call-btn {{
-            width: 75px;
-            height: 75px;
+        .action-circle-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .real-call-btn {
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             border: none;
-            font-size: 32px;
-            color: white;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
-        .btn-reject-call {{
-            background: #ff3b30;
-            box-shadow: 0 0 25px rgba(255, 59, 48, 0.5);
+        .btn-red { background: #ff3b30; }
+        .btn-green { background: #34c759; animation: bounce-slight 1.5s infinite; }
+
+        .btn-label {
+            font-size: 14px;
+            color: #fff;
         }
 
-        .btn-accept-call {{
-            background: #34c759;
-            box-shadow: 0 0 25px rgba(52, 199, 89, 0.6);
-            animation: shake-bounce 1s infinite;
+        /* ------------------------------------------- */
+        /* HIGH CONVERTING FREE SIGNUP POPUP (LEAD MAGNET) */
+        /* ------------------------------------------- */
+        .conversion-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 20000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
         }
 
-        /* KEYFRAMES ANIMATIONS */
-        @keyframes pulse-green {{ 0% {{ box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7); }} 70% {{ box-shadow: 0 0 0 8px rgba(0, 255, 102, 0); }} 100% {{ box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }} }}
-        @keyframes pulse-glow {{ 0% {{ box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7); }} 70% {{ box-shadow: 0 0 0 15px rgba(255, 0, 85, 0); }} 100% {{ box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); }} }}
-        @keyframes deep-pulse {{ 0% {{ box-shadow: 0 0 0 0 rgba(255, 0, 127, 0.6); }} 70% {{ box-shadow: 0 0 0 25px rgba(255, 0, 127, 0); }} 100% {{ box-shadow: 0 0 0 0 rgba(255, 0, 127, 0); }} }}
-        @keyframes blink {{ 50% {{ opacity: 0.4; }} }}
-        @keyframes popIn {{ to {{ opacity: 1; transform: scale(1) translateY(0); }} }}
-        @keyframes fadeIn {{ from {{ opacity: 0; }} to {{ opacity: 1; }} }}
-        @keyframes pulse-text {{ 50% {{ opacity: 0.5; }} }}
-        @keyframes shake-bounce {{ 0%, 100% {{ transform: translateY(0); }} 50% {{ transform: translateY(-8px); }} }}
+        .conversion-modal-overlay.is-active {
+            opacity: 1; pointer-events: all;
+        }
+
+        .conversion-box {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px 20px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transform: translateY(20px);
+            transition: 0.3s;
+            color: var(--text-main);
+        }
+
+        .conversion-modal-overlay.is-active .conversion-box {
+            transform: translateY(0);
+        }
+
+        .shield-icon {
+            width: 50px;
+            height: 50px;
+            background: #e7f3ff;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 15px auto;
+        }
+
+        .conversion-box h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #050505;
+        }
+
+        .conversion-box p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .master-cta-anchor {
+            display: block;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .master-cta-anchor:hover { background: #0073e6; }
+
+        .cancel-btn {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* Animations */
+        @keyframes pulse-light { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); } 70% { box-shadow: 0 0 0 15px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 0 transparent; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes bounce-slight { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            <img src="{USER_PHOTO_URL}" alt="Profile" class="profile-pic">
-            <div class="header-info">
-                <h1>VIP Premium Access</h1>
-                <div class="verified-badge">✔ Verified Profile</div>
-                <div class="status"><div class="status-dot"></div>HD Interactive Feed</div>
+    <div class="dashboard-wrapper">
+        
+        <!-- Header -->
+        <div class="app-header">
+            <div class="profile-section">
+                <div class="avatar-container">
+                    <img src="https://github.com/sdhujtrgfkitrye4w63456754-source/photo/blob/423c45f1f7ffc39b305aef4a2a4d2516e13a6688/GsKNHUXXsAA_z4C.jpg?raw=true" alt="Profile" class="avatar-img">
+                    <div class="online-dot"></div>
+                </div>
+                <div class="profile-info">
+                    <h2>Live Chat Room <span class="verified-icon">✔</span></h2>
+                    <p>Free Public Session</p>
+                </div>
+            </div>
+            <div class="live-viewers-header">
+                🔴 <span id="headerViewers">2,489</span>
             </div>
         </div>
 
-        <div class="media-area" onclick="triggerGatedModal('Private Stream Access', 'Lock the private high-definition audio & video feed by performing verification.')">
+        <!-- Video Player -->
+        <div class="video-canvas" onclick="triggerSignupPopup('Verify to Watch Live', 'Our system requires a quick security check to make sure you are human. Sign up for a 100% FREE account to unlock the HD video stream and join the room instantly.')">
             <div class="live-tag">LIVE</div>
-            <div class="counter-tag">👁 <span id="videoViewerCount">2,489</span></div>
+            <div class="counter-tag">👁 <span id="videoViewers">2,489</span></div>
             <div class="play-center-btn">▶</div>
         </div>
 
-        <div class="control-grid">
-            <div class="action-card call-active" onclick="simulateOutgoingCall()">
-                <div class="control-icon">📞</div>
-                <h3>VIP Call</h3>
-                <p style="color: #00ff66;">Instant Connect</p>
+        <!-- Call Actions -->
+        <div class="control-row">
+            <div class="control-btn active" onclick="simulateCallButton()">
+                <div class="control-btn-icon">📞</div>
+                <span>Start Call</span>
             </div>
-            <div class="action-card" onclick="triggerGatedModal('Private Message', 'Messaging requires a verified profile to send attachments.')">
-                <div class="control-icon">💬</div>
-                <h3>Send Message</h3>
-                <p>Private DM</p>
+            <div class="control-btn" onclick="triggerSignupPopup('Private Message', 'To prevent spam, please create a free profile before sending private messages.')">
+                <div class="control-btn-icon">💬</div>
+                <span>Message</span>
             </div>
-            <div class="action-card" onclick="triggerGatedModal('Premium Gallery Vault', 'Gain access to exclusive archived photos and videos.')">
-                <div class="control-icon">🔒</div>
-                <h3>Private Vault</h3>
-                <p>Locked Items</p>
+            <div class="control-btn" onclick="triggerSignupPopup('Add Friend', 'You need a free account to send friend requests.')">
+                <div class="control-btn-icon">👤</div>
+                <span>Add Friend</span>
             </div>
         </div>
 
-        <div class="chat-section">
-            <div class="chat-meta">
-                <span>💬 Private Room Chat</span>
-                <span id="totalCommentsCounter" style="color: var(--primary); font-weight: bold;">4,192 Comments</span>
+        <!-- Chat Stream -->
+        <div class="chat-container">
+            <div class="chat-stream" id="chatBox">
+                <!-- Auto chats inject here -->
             </div>
-            <div class="chat-stream" id="liveChatFlow">
-                </div>
-            <div class="chat-input-area">
-                <input type="text" class="interactive-input" placeholder="Type your comment..." onclick="triggerGatedModal('Join Chat', 'Creating a free profile is required to join the conversation live.')">
-                <button class="send-action-btn" onclick="triggerGatedModal('Join Chat', 'Creating a free profile is required to join the conversation live.')">➤</button>
+            
+            <div class="chat-input-wrapper">
+                <input type="text" class="interactive-input" placeholder="Write a public comment..." onclick="triggerSignupPopup('Join Chat', 'You must verify your profile by creating a free account to join the chat and talk to everyone.')">
             </div>
         </div>
     </div>
 
+    <!-- 15-SECOND REALISTIC SMARTPHONE CALL SCREEN -->
     <div class="fullscreen-call-overlay" id="fullScreenCallBox">
-        <div></div> <div class="caller-avatar-wrapper">
-            <img src="{USER_PHOTO_URL}" alt="Caller" class="caller-avatar-huge">
+        <div class="call-top-text">
+            <div class="call-title">Free Live Call</div>
+            <img src="https://github.com/sdhujtrgfkitrye4w63456754-source/photo/blob/423c45f1f7ffc39b305aef4a2a4d2516e13a6688/GsKNHUXXsAA_z4C.jpg?raw=true" alt="Caller" class="caller-avatar">
+            <div class="caller-name-big">Live Chat User</div>
+            <div class="call-status">Incoming video call...</div>
         </div>
-        <div style="text-align: center; color: white;">
-            <div class="caller-name">VIP Host Request</div>
-            <div class="call-status-text">Video Call Pending...</div>
-            <div class="call-controls-row">
-                <button class="circle-call-btn btn-reject-call" onclick="executeOfferRedirect()">✖</button>
-                <button class="circle-call-btn btn-accept-call" onclick="executeOfferRedirect()">📞</button>
+
+        <!-- Normal Sized Real Buttons -->
+        <div class="call-buttons-container">
+            <div class="action-circle-group" onclick="triggerSignupFromCall()">
+                <button class="real-call-btn btn-red">☎</button>
+                <span class="btn-label">Decline</span>
             </div>
-            <div style="font-size: 11px; color: rgba(255,255,255,0.3); text-transform: uppercase;">🔒 End-to-End Encrypted Tunnel</div>
+            <div class="action-circle-group" onclick="triggerSignupFromCall()">
+                <button class="real-call-btn btn-green">🎥</button>
+                <span class="btn-label">Accept</span>
+            </div>
         </div>
     </div>
 
-    <div class="conversion-modal-overlay" id="conversionLocker">
+    <!-- HIGH-CONVERTING LEAD MAGNET POPUP -->
+    <div class="conversion-modal-overlay" id="conversionModal">
         <div class="conversion-box">
-            <div class="lock-icon-glow">🔒</div>
-            <h2 id="modalHeadline">Authentication Required</h2>
-            <p id="modalDescription">A secure link could not be established. To connect with me and perform this action, please perform a quick verification check by setting up your lifetime free account.</p>
+            <div class="shield-icon">🛡️</div>
+            <h2 id="modalTitle">Security Verification</h2>
+            <p id="modalDesc">To accept this call and enter the room, we need to verify you are a real person. <b>Create a 100% free account</b> below. Your call will connect automatically after signup.</p>
             
-            <a href="{CPA_OFFER_LINK}" class="master-cta-anchor" target="_self">Verify Account Instantly</a>
+            <a href="https://t.taffizerq.com/719iel" class="master-cta-anchor" target="_self">Create Free Account Now</a>
             
-            <div class="dismiss-link" onclick="closeGatedModal()">Decline & Disconnect</div>
+            <div class="cancel-btn" onclick="closeModal()">Cancel</div>
         </div>
     </div>
 
     <script>
-        const OFFER_URL = "{CPA_OFFER_LINK}";
-        const lockerOverlay = document.getElementById('conversionLocker');
-        const modalHeadline = document.getElementById('modalHeadline');
-        const modalDescription = document.getElementById('modalDescription');
-        const chatStreamBox = document.getElementById('liveChatFlow');
+        const chatBox = document.getElementById('chatBox');
+        const conversionModal = document.getElementById('conversionModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const fullScreenCallBox = document.getElementById('fullScreenCallBox');
 
-        // Dynamic High-Reach Marketing Comments Pool
-        const masterCommentsPool = [
-            {{ name: "Sarah_VIP", text: "Wow, just made an account! Finally, the connection works! 😍", color: "#ff00aa" }},
-            {{ name: "Dave_Pro", text: "Is the video feed really 1080p? The dashboard looks amazing.", color: "#cc00ff" }},
-            {{ name: "SamanthaX", text: "I'm on a private call now! Verification took less than a minute! 🔥", color: "#ff0055" }},
-            {{ name: "Guest_4821", text: "Hello from NYC! 🇺🇸 How do I unlock the gallery vault?", color: "#ffaa00" }},
-            {{ name: "Mike_199", text: "The quality is so good today.", color: "#00f0ff" }},
-            {{ name: "LucasT", text: "Sent a private gift! Did you receive it? 🎁", color: "#00ff66" }}
+        // Dynamic Comments
+        const commentsList = [
+            { name: "John_USA", text: "Hey! The live chat is finally open.", color: "#4267B2" },
+            { name: "Sarah1995", text: "Just signed up for free, the stream works perfectly! 😍" },
+            { name: "Mike_Alpha", text: "How do I answer the call on my phone?" },
+            { name: "Guest_842", text: "Hello everyone, where is everybody from?" },
+            { name: "David_Pro", text: "I accepted the call, the quality is very clear." },
+            { name: "Emma_Cute", text: "Signing up took me 30 seconds. So easy!" }
         ];
 
-        let commentSequence = 0;
-        let totalCommentsBase = 4192;
+        let msgIndex = 0;
 
-        // Function to loop live chat messages automatically
-        function streamLiveComments() {{
-            if (commentSequence >= masterCommentsPool.length) {{
-                commentSequence = 0; // Loop seamlessly
-            }}
-
-            const currentComment = masterCommentsPool[commentSequence];
-            const bubbleElement = document.createElement('div');
-            bubbleElement.className = 'chat-bubble';
-            bubbleElement.innerHTML = `
-                <div class="chat-user" style="color: ${{currentComment.color}};">
-                    <span>👤</span> ${{currentComment.name}}
+        function injectLiveComment() {
+            if(msgIndex >= commentsList.length) msgIndex = 0;
+            const c = commentsList[msgIndex];
+            
+            const div = document.createElement('div');
+            div.className = 'chat-row';
+            div.innerHTML = `
+                <div class="chat-avatar">${c.name.charAt(0)}</div>
+                <div class="chat-bubble">
+                    <div class="chat-user">${c.name}</div>
+                    <div class="chat-text">${c.text}</div>
                 </div>
-                <div class="chat-text">${{currentComment.text}}</div>
             `;
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            msgIndex++;
 
-            chatStreamBox.appendChild(bubbleElement);
-            chatStreamBox.scrollTop = chatStreamBox.scrollHeight;
-            commentSequence++;
+            setTimeout(injectLiveComment, Math.floor(Math.random() * 2000) + 2000);
+        }
+        setTimeout(injectLiveComment, 1000);
 
-            totalCommentsBase += Math.floor(Math.random() * 3) + 1;
-            document.getElementById('totalCommentsCounter').innerText = totalCommentsBase.toLocaleString() + " Comments";
+        // Viewer Counter
+        let viewers = 2489;
+        setInterval(() => {
+            viewers += Math.floor(Math.random() * 5);
+            document.getElementById('headerViewers').innerText = viewers.toLocaleString();
+            document.getElementById('videoViewers').innerText = viewers.toLocaleString();
+        }, 3000);
 
-            let adaptiveDelay = Math.floor(Math.random() * (3500 - 1500 + 1)) + 1500;
-            setTimeout(streamLiveComments, adaptiveDelay);
-        }}
-        setTimeout(streamLiveComments, 1000);
+        // Popup logic
+        function triggerSignupPopup(title, desc) {
+            modalTitle.innerText = title;
+            modalDesc.innerHTML = desc;
+            conversionModal.classList.add('is-active');
+        }
 
-        // Core Gated Modal Launcher
-        function triggerGatedModal(headlineText, descriptionText) {{
-            modalHeadline.innerText = headlineText;
-            modalDescription.innerText = descriptionText;
-            lockerOverlay.classList.add('is-active');
-        }}
+        function closeModal() {
+            conversionModal.classList.remove('is-active');
+        }
 
-        function closeGatedModal() {{
-            lockerOverlay.classList.remove('is-active');
-        }}
+        // Call Button clicked on dashboard
+        function simulateCallButton() {
+            const btn = document.querySelector('.control-btn.active span');
+            btn.innerText = "Dialing...";
+            setTimeout(() => {
+                btn.innerText = "Start Call";
+                triggerSignupPopup("Call Failed", "Our security system requires you to have a verified free account before you can make direct calls. <b>Signup takes 1 minute</b> and is completely free.");
+            }, 1500);
+        }
 
-        // Action Trigger: Dashboard Call Click Logic (Simulates calling -> pops gated modal)
-        function simulateOutgoingCall() {{
-            const callBtnText = document.querySelector('.call-active h3');
-            callBtnText.innerText = "Connecting...";
-            document.querySelector('.call-active').style.borderColor = "#ffaa00";
+        // 15 SECONDS EXACT DELAY FOR FULL SCREEN CALL
+        setTimeout(() => {
+            fullScreenCallBox.style.display = 'flex';
+        }, 15000);
 
-            setTimeout(() => {{
-                callBtnText.innerText = "VIP Call";
-                document.querySelector('.call-active').style.borderColor = "#00ff66";
-                // Persuasive message explaining *how to connect*
-                triggerGatedModal('Let\'s Connect! 🔒', 'I want to talk to you too! However, I can\'t handle direct private calls until you verify your profile. It\'s a quick, free security check to make sure we\'re both real. After that, we can have our 1-on-1 private video chat. I\'m waiting! Click below to create your account and unlock my room.');
-            }}, 1800);
-        }}
-
-        // AUTOMATED CRITICAL TRIGGER: 10-Second Fullscreen Incoming Call Simulation
-        setTimeout(() => {{
-            document.getElementById('fullScreenCallBox').style.display = 'flex';
-        }}, 10000);
-
-        // Secure Same-Tab Redirection Engine
-        function executeOfferRedirect() {{
-            window.location.href = OFFER_URL;
-        }}
+        // When user clicks ACCEPT or REJECT on the full-screen call
+        function triggerSignupFromCall() {
+            fullScreenCallBox.style.display = 'none'; // hide the ringing screen
+            // IMMEDAITELY SHOW THE POPUP TO FORCE SIGNUP
+            triggerSignupPopup(
+                "Verify to Accept Call", 
+                "To accept this incoming video call and join the room, you must verify your identity. <b>Create your 100% free account below</b> to continue."
+            );
+        }
     </script>
 </body>
 </html>
